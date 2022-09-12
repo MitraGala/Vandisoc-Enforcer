@@ -4,8 +4,9 @@ from discord import Member
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
+intents = discord.Intents.default()
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!',intents=intents)
 bot.remove_command('help')
 @bot.event
 async def on_ready():
