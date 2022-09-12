@@ -1,10 +1,11 @@
 from time import sleep
 import os
 from discord import Member
+from discord import Intents
 from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-intents = discord.Intents.default()
+intents = Intents.default()
 
 bot = commands.Bot(command_prefix='!',intents=intents)
 bot.remove_command('help')
