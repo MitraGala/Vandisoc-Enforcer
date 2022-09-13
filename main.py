@@ -16,6 +16,9 @@ async def on_ready():
       if i.id == 1007912248108400720:
         global em
         em = i
+      if i.id == 996168288168050809:
+        global tr
+        tr = i
     print(f'{bot.user.name} has connected to Discord!')
     
 @bot.event
@@ -24,6 +27,8 @@ async def on_message(ctx):
     await ctx.add_reaction(em)
   if ctx.author.id == 929148445229469706:
     await ctx.add_reaction("\N{NERD FACE}")
+    await ctx.add_reaction("\N{PILE OF POO}")
+    await ctx.add_reaction(tr)
   await bot.process_commands(ctx)
 
 @bot.command(name='active')
