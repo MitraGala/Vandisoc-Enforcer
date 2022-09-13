@@ -20,6 +20,14 @@ async def on_ready():
         global ne
         ne = i
     print(f'{bot.user.name} has connected to Discord!')
+    
+@bot.event
+async def on_message(ctx):
+  if "1984" in ctx.content:
+    await ctx.add_reaction(em)
+  if ctx.author.id == 411489258600267778:
+    await ctx.add_reaction(ne)
+  await bot.process_commands(ctx)
 
 @bot.command(name='active')
 async def active(ctx):
