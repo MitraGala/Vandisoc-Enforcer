@@ -25,7 +25,7 @@ async def on_ready():
 async def on_message(ctx):
   if "1984" in ctx.content:
     await ctx.add_reaction(em)
-  if ctx.author.id == 929148445229469706:
+  if ctx.author.id == 583377694364794917:
     await ctx.add_reaction("\N{NERD FACE}")
     await ctx.add_reaction("\N{PILE OF POO}")
     await ctx.add_reaction(tr)
