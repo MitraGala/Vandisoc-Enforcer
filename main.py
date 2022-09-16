@@ -71,7 +71,7 @@ async def deny(ctx,arg1: Member=None):
         await ctx.message.delete()
 
 @bot.command(name='bam')
-async def bam(ctx,arg1: Member=None,*arg2=None):
+async def bam(ctx,arg1: Member=None,*arg2):
     server=ctx.guild
     if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
         if arg1 == None:
