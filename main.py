@@ -142,7 +142,7 @@ async def caracal(ctx,arg1: Member=None):
         else:
             giverole = server.get_role(1016908009559052338) # sexy
             await arg1.add_roles(giverole)
-            await ctx.send("awesome caracal")
+            await ctx.send("awesomecaracal")
 
 @bot.command(name='serb')
 async def serb(ctx,arg1: Member=None):
