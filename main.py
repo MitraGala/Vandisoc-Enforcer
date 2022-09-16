@@ -83,7 +83,7 @@ async def bam(ctx,arg1: Member=None,arg2=None):
             else:
                 a = " "
                 b = arg2
-            await ctx.send(arg1.mention+" has been bammed for+a+b+"!")
+            await ctx.send(arg1.mention+" has been bammed for"+a+b+"!")
 
 
 @bot.command(name='brazil')
