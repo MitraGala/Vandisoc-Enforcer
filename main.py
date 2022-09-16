@@ -77,7 +77,7 @@ async def bam(ctx,arg1: Member=None,*arg2):
         if arg1 == None:
             await ctx.send("No user given")
         else:
-            if arg2 == None:
+            if len(arg2) == 0:
                 a = ""
                 b = ""
             else:
