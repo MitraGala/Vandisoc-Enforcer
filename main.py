@@ -71,13 +71,19 @@ async def deny(ctx,arg1: Member=None):
         await ctx.message.delete()
 
 @bot.command(name='bam')
-async def bam(ctx,arg1: Member=None,arg2):
+async def bam(ctx,arg1: Member=None,arg2=None):
     server=ctx.guild
     if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
         if arg1 == None:
             await ctx.send("No user given")
         else:
-            await ctx.send(arg1.mention+" has been bammed for "+arg2+"!")
+            if arg2 == None:
+                a = ""
+                b = ""
+            else:
+                a = " "
+                b = arg2
+            await ctx.send(arg1.mention+" has been bammed for+a+b+"!")
 
 
 @bot.command(name='brazil')
