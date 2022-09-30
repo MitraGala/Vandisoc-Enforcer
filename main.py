@@ -160,6 +160,17 @@ async def caracal(ctx,arg1: Member=None):
             await arg1.add_roles(giverole)
             await ctx.send("awesomecaracal")
 
+@bot.command(name='reddy')
+async def reddy(ctx,arg1: Member=None):
+    server=ctx.guild
+    if ctx.author.id == 741873798537543721:
+        if arg1 == None:
+            await ctx.send("No user given")
+        else:
+            giverole = server.get_role(1024867819810213939) # sexy
+            await arg1.add_roles(giverole)
+            await ctx.send(arg1.mention+" is now part of the Reddy caste!")
+            
 @bot.command(name='serb')
 async def serb(ctx,arg1: Member=None):
     server=ctx.guild
