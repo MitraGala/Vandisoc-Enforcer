@@ -167,7 +167,7 @@ async def reddy(ctx,arg1: Member=None):
         if arg1 == None:
             await ctx.send("No user given")
         else:
-            giverole = server.get_role(1024867819810213939) # sexy
+            giverole = server.get_role(1024866900783665293) # sexy
             await arg1.add_roles(giverole)
             await ctx.send(arg1.mention+" is now part of the Reddy caste!")
             
