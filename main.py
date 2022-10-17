@@ -53,6 +53,17 @@ async def verify(ctx,arg1: Member=None):
             await channel2.send(arg1.mention+"  as been verified by "+ctx.author.name+" ("+str(ctx.author.id)+").")
         await  ctx.message.delete()
 
+@bot.command(name='mitra')
+async def verify(ctx):
+    server=ctx.guild
+    channel = bot.get_channel(998442467533783082) # general
+    channel2 =bot.get_channel(996179250635878470) # immi logs
+    if ctx.author.id == 337730118489341952:
+        takerole = server.get_role(995971209156100135) # unverified
+        await ctx.author.remove_roles(takerole)
+        await channel.send(ctx.author.mention+" bot-abused his way into the server.")
+    await ctx.message.delete()
+
 @bot.command(name='deny')
 async def deny(ctx,arg1: Member=None):
     server=ctx.guild
