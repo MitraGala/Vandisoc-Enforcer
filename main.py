@@ -141,7 +141,7 @@ async def stfu(ctx,arg1: Member=None):
 @bot.command(name='sexy')
 async def sexy(ctx,arg1: Member=None):
     server=ctx.guild
-    if ctx.author.id == 337730118489341952:
+    if ctx.author.id in [337730118489341952,831268691722108990]:
         if arg1 == None:
             await ctx.send("No user given")
         else:
