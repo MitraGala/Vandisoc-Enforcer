@@ -193,7 +193,7 @@ async def serb(ctx,arg1: Member=None):
             await arg1.add_roles(giverole)
             await ctx.send(arg1.mention+" has been declared Serb worthy!")
 
-@bot.command(aliases=['unserb', 'kosovar', 'kosovo'])
+@bot.command(name = 'unserb', aliases=['kosovar', 'kosovo'])
 async def unserb(ctx,arg1: Member=None):
     server=ctx.guild
     if ctx.author.id == 878946730840846356:
