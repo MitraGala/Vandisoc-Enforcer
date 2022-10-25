@@ -193,6 +193,17 @@ async def serb(ctx,arg1: Member=None):
             await arg1.add_roles(giverole)
             await ctx.send(arg1.mention+" has been declared Serb worthy!")
 
+@bot.command(aliases=['unserb', 'kosovar', 'kosovo'])
+async def unserb(ctx,arg1: Member=None):
+    server=ctx.guild
+    if ctx.author.id == 878946730840846356:
+        if arg1 == None:
+            await ctx.send("No user given")
+        else:
+            takerole = server.get_role(995971209260970061) # sexy
+            await arg1.remove_roles(takerole)
+            await ctx.send(arg1.mention+" has been caught recognising Kosovo!")
+
 @bot.command(name='amber')
 async def amber(ctx):
   await ctx.send('This command, it does absolutely nothing other than give this response. Try it, it\'s real')
