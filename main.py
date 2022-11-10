@@ -97,7 +97,7 @@ async def bam(ctx,arg1: Member=None,*arg2):
             await ctx.send(arg1.mention+" has been bammed"+a+b+"!")
 
 
-@bot.command(name='brazil')
+@bot.command(name='malaysia', aliases=['Malaysia', 'malay', 'Malay'])
 async def brazil(ctx,arg1: Member=None):
     server=ctx.guild
     if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
@@ -106,9 +106,9 @@ async def brazil(ctx,arg1: Member=None):
         else:
             giverole = server.get_role(995971209193869423) # brazil
             await arg1.add_roles(giverole)
-            await ctx.send(arg1.mention+" has been sent to Brazil!")
+            await ctx.send(arg1.mention+" has been sent to Malaysia!")
 
-@bot.command(name='unbrazil')
+@bot.command(name='unmalaysia', aliases=['Unmalaysia', 'unmalay', 'Unmalay'])
 async def unbrazil(ctx,arg1: Member=None):
     server=ctx.guild
     if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
@@ -117,7 +117,7 @@ async def unbrazil(ctx,arg1: Member=None):
         else:
             takerole = server.get_role(995971209193869423) # brazil
             await arg1.remove_roles(takerole)
-            await ctx.send(arg1.mention+" has been let out of brazil.")
+            await ctx.send(arg1.mention+" has been let out of Malaysia.")
 
 @bot.command(name='changspeak')
 async def changspeak(ctx,arg1: Member=None):
