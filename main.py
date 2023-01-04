@@ -307,10 +307,12 @@ async def set(ctx, arg1):
     pasta['userid']=ctx.author.id
     startlen = 5+len(arg1)
     pasta['content']=ctx.message.content[startlen:]
-    if os.path.exists("/pastas/"+arg1):
-        print('already exists')
+    if os.path.exists(r"\pastas\"+arg1):
+        exec('loadpasta='+open(r"\pastas\"+arg1, "r").read())
+        print(loadpasta)
+        print(pasta)
     else:
         await ctx.send("Set pasta **" + arg1 + "**.")
-        open("/pastas/"+arg1, "w+").write(pasta)
+        open(r"\pastas\"+arg1, "w+").write(pasta)
     
 bot.run(TOKEN)
