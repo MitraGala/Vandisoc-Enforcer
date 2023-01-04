@@ -314,9 +314,19 @@ async def set(ctx, arg1):
             await ctx.send("Set pasta **" + arg1 + "**.")
             pickle.dump(pasta, open(pastapath, "wb"))
         else:
-            await ctx.send("Pasta is already owned by user #"+oldpasta['userid'])
+            await ctx.send("Pasta is already owned by user #"+str(oldpasta['userid']))
     else:
         await ctx.send("Set pasta **" + arg1 + "**.")
         pickle.dump(pasta, open(pastapath, "wb"))
+
+@bot.command(name='pasta')
+async def pasta(ctx, arg1):
+    server=ctx.guild
+    pastapath = "pastas/"+arg1
+    if os.path.exists(pastapath):
+        pasta = pickle.load(open(pastapath, "rb"))
+        await ctx.send(pasta['content'].replace("@", "#"))
+    else:
+        await ctx.send("Pasta does not exist.")
     
 bot.run(TOKEN)
