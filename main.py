@@ -1,5 +1,5 @@
 from time import sleep
-import os, filecmp
+import os, filecmp, urllib.request
 from discord import Member
 from discord import Intents
 from discord.ext import commands
