@@ -33,7 +33,7 @@ async def on_message(ctx):
 
 @bot.command(name='active')
 async def active(ctx):
-  await ctx.send("I'm up and running "+ctx.author.name + " and now I am UPDATED!")
+  await ctx.send("I'm up and running "+ctx.author.name)
 @bot.command(name='verify')
 async def verify(ctx,arg1: Member=None):
     server=ctx.guild
