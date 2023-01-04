@@ -303,30 +303,32 @@ async def update(ctx):
 @bot.command(name='set')
 async def set(ctx, arg1):
     server=ctx.guild
-    pastapath = "pastas/"+arg1
-    pasta = {}
-    pasta['userid']=ctx.author.id
-    startlen = 6+len(arg1)
-    pasta['content']=ctx.message.content[startlen:]
-    if os.path.exists(pastapath):
-        oldpasta = pickle.load(open(pastapath, "rb"))
-        if oldpasta['userid'] == pasta['userid']:
+    if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.message.channel.id == 996034231539085412:
+        pastapath = "pastas/"+arg1
+        pasta = {}
+        pasta['userid']=ctx.author.id
+        startlen = 6+len(arg1)
+        pasta['content']=ctx.message.content[startlen:]
+        if os.path.exists(pastapath):
+            oldpasta = pickle.load(open(pastapath, "rb"))
+            if oldpasta['userid'] == pasta['userid']:
+                await ctx.send("Set pasta **" + arg1 + "**.")
+                pickle.dump(pasta, open(pastapath, "wb"))
+            else:
+                await ctx.send("Pasta is already owned by user #"+str(oldpasta['userid']))
+        else:
             await ctx.send("Set pasta **" + arg1 + "**.")
             pickle.dump(pasta, open(pastapath, "wb"))
-        else:
-            await ctx.send("Pasta is already owned by user #"+str(oldpasta['userid']))
-    else:
-        await ctx.send("Set pasta **" + arg1 + "**.")
-        pickle.dump(pasta, open(pastapath, "wb"))
 
 @bot.command(name='pasta')
 async def pasta(ctx, arg1):
     server=ctx.guild
-    pastapath = "pastas/"+arg1
-    if os.path.exists(pastapath):
-        pasta = pickle.load(open(pastapath, "rb"))
-        await ctx.send(pasta['content'].replace("@", "#"))
-    else:
-        await ctx.send("Pasta does not exist.")
+    if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.message.channel.id == 996034231539085412:
+        pastapath = "pastas/"+arg1
+        if os.path.exists(pastapath):
+            pasta = pickle.load(open(pastapath, "rb"))
+            await ctx.send(pasta['content'].replace("@", "#"))
+        else:
+            await ctx.send("Pasta does not exist.")
     
 bot.run(TOKEN)
