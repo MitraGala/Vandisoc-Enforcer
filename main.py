@@ -1,5 +1,5 @@
 from time import sleep
-import os, filecmp, urllib.request
+import os, filecmp, urllib.request, pickle
 from discord import Member
 from discord import Intents
 from discord.ext import commands
@@ -307,10 +307,10 @@ async def set(ctx, arg1):
     pasta['userid']=ctx.author.id
     startlen = 5+len(arg1)
     pasta['content']=ctx.message.content[startlen:]
-    if os.path.exists("/pasta/"+arg1):
+    if os.path.exists("/pastas/"+arg1):
         print('already exists')
     else:
         await ctx.send("Set pasta **" + arg1 + "**.")
-        open("/pasta/"+arg1, "w").write(pasta)
+        open("/pastas/"+arg1, "w+").write(pasta)
     
 bot.run(TOKEN)
