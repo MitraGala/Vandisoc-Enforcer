@@ -4,9 +4,6 @@ from discord import Member
 from discord import Intents
 from discord.ext import commands
 
-print('testing')
-quit()
-
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
 
@@ -289,4 +286,10 @@ async def checklevel(ctx, num = None):
     except:
       await ctx.send("Please give the amount of xp to convert to levels.")
 
+@bot.command(name='update')
+async def update(ctx):
+    server=ctx.guild
+    if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
+        quit()
+    
 bot.run(TOKEN)
