@@ -289,7 +289,7 @@ async def checklevel(ctx, num = None):
 @bot.command(name='update')
 async def update(ctx):
     server=ctx.guild
-    if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
+    if ctx.author.id == 835099961128910848 or ctx.author.id == 337730118489341952:
         quit()
     
 bot.run(TOKEN)
