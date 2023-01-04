@@ -1,5 +1,5 @@
 from time import sleep
-import os
+import os, filecmp
 from discord import Member
 from discord import Intents
 from discord.ext import commands
@@ -282,7 +282,7 @@ async def checklevel(ctx, num = None):
         rem = int((level%1)*100)
         await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
       else:
-        await ctx.sent('Please give a non-zero positive number.')
+        await ctx.send('Please give a non-zero positive number.')
     except:
       await ctx.send("Please give the amount of xp to convert to levels.")
 
@@ -290,6 +290,14 @@ async def checklevel(ctx, num = None):
 async def update(ctx):
     server=ctx.guild
     if ctx.author.id == 835099961128910848 or ctx.author.id == 337730118489341952:
-        quit()
+        url = 'https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/main.py'
+        urllib.request.urlcleanup()
+        urllib.request.urlretrieve(url, 'tempcode')
+        sameFile = filecmp.cmp('main.py', 'tempcode')
+        if not sameFile:
+            await ctx.send("Updating...")
+            quit()
+        else:
+            await ctx.send("Vandisoc is fully updated.")
     
 bot.run(TOKEN)
