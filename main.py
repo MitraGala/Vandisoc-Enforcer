@@ -306,7 +306,7 @@ async def set(ctx, arg1):
     pasta = {}
     pasta['userid']=ctx.author.id
     startlen = 5+len(arg1)
-    pasta['content']=ctx.content[startlen:]
+    pasta['content']=ctx.message.content[startlen:]
     if os.path.exists("/pasta/"+arg1):
         print('already exists')
     else:
