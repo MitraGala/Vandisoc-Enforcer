@@ -303,16 +303,20 @@ async def update(ctx):
 @bot.command(name='set')
 async def set(ctx, arg1):
     server=ctx.guild
+    pastapath = "pastas/"+arg1
     pasta = {}
     pasta['userid']=ctx.author.id
-    startlen = 5+len(arg1)
+    startlen = 6+len(arg1)
     pasta['content']=ctx.message.content[startlen:]
-    if os.path.exists(r"\pastas\"+arg1):
-        exec('loadpasta='+open(r"\pastas\"+arg1, "r").read())
-        print(loadpasta)
-        print(pasta)
+    if os.path.exists(pastapath):
+        oldpasta = pickle.load(open(pastapath, "rb"))
+        if oldpasta['userid'] == pasta['userid']:
+            await ctx.send("Set pasta **" + arg1 + "**.")
+            pickle.dump(pasta, open(pastapath, "wb"))
+        else:
+            await ctx.send("Pasta is already owned by user #"+oldpasta['userid'])
     else:
         await ctx.send("Set pasta **" + arg1 + "**.")
-        open(r"\pastas\"+arg1, "w+").write(pasta)
+        pickle.dump(pasta, open(pastapath, "wb"))
     
 bot.run(TOKEN)
