@@ -299,5 +299,18 @@ async def update(ctx):
             quit()
         else:
             await ctx.send("Vandisoc is fully updated.")
+
+@bot.command(name='set')
+async def set(ctx, arg1):
+    server=ctx.guild
+    pasta = {}
+    pasta['userid']=ctx.author.id
+    startlen = 5+len(arg1)
+    pasta['content']=ctx.content[startlen:]
+    if os.path.exists("/pasta/"+arg1):
+        print('already exists')
+    else:
+        await ctx.send("Set pasta **" + arg1 + "**.")
+        open("/pasta/"+arg1, "w").write(pasta)
     
 bot.run(TOKEN)
