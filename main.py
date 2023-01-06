@@ -346,5 +346,10 @@ async def rps(ctx, userChoice):
 @bot.command(name='wubblu')
 async def wubblu(ctx):
     await ctx.send(pickle.load(open('wubblu.songs', "rb"))[random.randint(0,44)])
+
+@bot.command(name='flip')
+async def flip(ctx):
+    results = ['Heads', 'Tails']
+    await ctx.send(results[random.randint(0,1)])
     
 bot.run(TOKEN)
