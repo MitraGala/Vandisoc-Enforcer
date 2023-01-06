@@ -331,4 +331,9 @@ async def pasta(ctx, arg1):
         else:
             await ctx.send("Pasta does not exist.")
     
+@bot.command(name='roll')
+async def roll(ctx, arg1):
+    server=ctx.guild
+    await ctx.send("You rolled " + str(random.randint(1,int(arg1))))
+    
 bot.run(TOKEN)
