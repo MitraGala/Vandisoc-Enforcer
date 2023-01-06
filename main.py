@@ -343,4 +343,8 @@ async def rps(ctx, userChoice):
     userOptions = {'rock':0,'r':0,'paper':1,'p':1,'scissors':2,'s':2}[userChoice]
     await ctx.send('I chose ' + ['rock','paper','scissors'][botChoice] + '. ' + results[userOptions][botChoice])
     
+@bot.command(name='wubblu')
+async def wubblu(ctx):
+    await ctx.send(pickle.load(open('wubblu.songs', "rb"))[random.randint(0,44)])
+    
 bot.run(TOKEN)
