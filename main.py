@@ -336,4 +336,11 @@ async def roll(ctx, arg1):
     server=ctx.guild
     await ctx.send("You rolled " + str(random.randint(1,int(arg1))))
     
+@bot.command(name='rps')
+async def rps(ctx, userChoice):
+    botChoice = random.randint(0,2)
+    results = [['We tied!','You lost!','You won!'],['You won!','We tied!','You lost!'],['You lost!','You won!','We tied!']]
+    userOptions = {'rock':0,'r':0,'paper':1,'p':1,'scissors':2,'s':2}[userChoice]
+    await ctx.send('I chose ' + ['rock','paper','scissors'][botChoice] + '. ' + results[userOptions][botChoice])
+    
 bot.run(TOKEN)
