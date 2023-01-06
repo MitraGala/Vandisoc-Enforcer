@@ -1,5 +1,5 @@
 from time import sleep
-import os, filecmp, urllib.request, pickle
+import os, filecmp, urllib.request, pickle, random
 from discord import Member
 from discord import Intents
 from discord.ext import commands
