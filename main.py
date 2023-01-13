@@ -360,6 +360,8 @@ async def news(ctx, newslink):
         if newslink[:4] == 'http':
             await channel.send(newslink)    
             await ctx.message.delete()
+        else:
+            await ctx.send('Invalid link')
     
 @bot.command(name='breaking')
 async def breaking(ctx, newslink):
@@ -369,5 +371,7 @@ async def breaking(ctx, newslink):
         if newslink[:4] == 'http':
             await channel.send('<@&1063333711187300433> ' + newslink)    
             await ctx.message.delete()
+        else:
+            await ctx.send('JESSE..,,,,.')
     
 bot.run(TOKEN)
