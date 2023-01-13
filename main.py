@@ -358,6 +358,15 @@ async def news(ctx, newslink):
     server=ctx.guild
     if (server.get_role(1063344840651313192) in ctx.author.roles) or (server.get_role(995971209294520370) in ctx.author.roles):
         if newslink[:4] == 'http':
+            await channel.send(newslink)    
+            await ctx.message.delete()
+    
+@bot.command(name='breaking')
+async def breaking(ctx, newslink):
+    channel = bot.get_channel(1060796345826422854)
+    server=ctx.guild
+    if (server.get_role(1063344840651313192) in ctx.author.roles) or (server.get_role(995971209294520370) in ctx.author.roles):
+        if newslink[:4] == 'http':
             await channel.send('<@&1063333711187300433> ' + newslink)    
             await ctx.message.delete()
     
