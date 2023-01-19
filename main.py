@@ -373,5 +373,19 @@ async def breaking(ctx, newslink):
             await ctx.message.delete()
         else:
             await ctx.send('JESSE..,,,,.')
-    
+
+@bot.event
+async def on_command_error(ctx, error):
+    print(error)
+    skip = ['!ban',
+'!tempban',
+'!mute',
+'!tempmute',
+'!unmute',
+'!mute',
+'!warn',
+'!infractions']
+    if not ctx.message.content.split(' ')[0] in skip:
+        await ctx.send('Rascal, scoundrel, idiot, fool!')            
+            
 bot.run(TOKEN)
