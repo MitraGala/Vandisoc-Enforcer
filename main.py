@@ -62,7 +62,7 @@ async def update(ctx):
         fun = open('fun.temp', 'r').read()
         staff = open('staff.temp', 'r').read()
         
-        print(main + '\n' + fun + '\n' + staff + '\nbot.run(TOKEN)')
+        open('tempcode', 'w').write(main + '\n' + fun + '\n' + staff + '\nbot.run(TOKEN)')
         
         sameFile = filecmp.cmp('main.py', 'tempcode')
         if not sameFile:
