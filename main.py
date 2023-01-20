@@ -374,6 +374,25 @@ async def breaking(ctx, newslink):
         else:
             await ctx.send('JESSE..,,,,.')
 
+@bot.command(name='count')
+async def count(ctx, poll):
+    graph = []
+    export = '**Poll Results:**\n'
+    server=ctx.guild
+    channel = bot.get_channel(995971209680392211)
+    msg = await channel.fetch_message(int(poll))
+    for i in msg.reactions:
+        if hasattr(i.emoji, 'id'):
+            graph.append(['<:'+i.emoji.name+':'+str(i.emoji.id)+'>', i.count])
+        else:
+            graph.append([i.emoji, i.count])     
+    count = 0
+    for i in graph:
+        count = count + i[1]
+    for i in graph:
+        export = export + i[0] + ' ' + str(round(i[1]/count*100,1)) + '%\n'
+    await ctx.send(export)
+            
 @bot.event
 async def on_command_error(ctx, error):
     skip = ['!ban',
