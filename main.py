@@ -53,15 +53,20 @@ async def active(ctx):
 async def update(ctx):
     server=ctx.guild
     if ctx.author.id == 835099961128910848 or ctx.author.id == 337730118489341952:
-        url = 'https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/main.py'
         urllib.request.urlcleanup()
-        urllib.request.urlretrieve(url, 'tempcode')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/main.py', 'main.temp')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/fun.py', 'fun.temp')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/staff.py', 'staff.temp')
+        
+        main = open('main.temp', 'r').read()
+        fun = open('fun.temp', 'r').read()
+        staff = open('staff.temp', 'r').read()
+        
+        print(main + '\n' + fun + '\n' + staff + '\nbot.run(TOKEN)')
+        
         sameFile = filecmp.cmp('main.py', 'tempcode')
         if not sameFile:
             await ctx.send("Updating...")
             quit()
         else:
             await ctx.send("Vandisoc is fully updated.")
-
-            
-bot.run(TOKEN)
