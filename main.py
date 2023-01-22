@@ -26,6 +26,7 @@ async def on_command_error(ctx, error):
     skip = ['!ban',
 '!tempban',
 '!mute',
+'!unban',
 '!tempmute',
 '!unmute',
 '!mute',
