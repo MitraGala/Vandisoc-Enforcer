@@ -195,5 +195,5 @@ async def ship(ctx, arg1, arg2):
 @bot.command(name='member')
 async def member(ctx):
     server=ctx.guild    
-    await ctx.send(ctx.message.content[8:])
+    await ctx.send(ctx.message.author.mention + "said:\n" + ctx.message.content[8:].replace('@', '#'))
     
