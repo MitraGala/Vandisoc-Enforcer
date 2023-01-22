@@ -191,3 +191,9 @@ async def ship(ctx, arg1, arg2):
     lineone = ':sparkles: Shipping result of __**' + arg1.replace('*', '^').replace('@', '#') + '**__ and __**' + arg2.replace('*', '^').replace('@', '#') + '**__ :two_hearts:'
     linetwo = ':heart:'*hearts + ':black_heart:'*(10-hearts) + ' - **' + str(shipvalue) + '%** match'
     await ctx.send(lineone+'\n'+linetwo+' '+cats[round(shipvalue/20)])
+
+@bot.command(name='member')
+async def member(ctx):
+    server=ctx.guild    
+    await ctx.send(ctx.message.content[8:])
+    
