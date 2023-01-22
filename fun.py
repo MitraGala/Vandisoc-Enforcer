@@ -195,6 +195,9 @@ async def ship(ctx, arg1, arg2):
 @bot.command(name='member')
 async def member(ctx):
     server=ctx.guild
-    vandiMembers = pickle.load(open('vandi members', 'rb'))
-    await ctx.send(ctx.message.author.mention + " said:\n" + ctx.message.content[8:].replace('@', '#') + ' ' + random.choice(vandiMembers))
-    await ctx.message.delete()
+    if 'xyz' in ctx.message.content[8:]:
+        vandiMembers = pickle.load(open('vandi members', 'rb'))
+        await ctx.send(ctx.message.author.mention + " said:\n" + ctx.message.content[8:].replace('@', '#').replace('xyz',random.choice(vandiMembers)).replace('abc',random.choice(vandiMembers)))
+        await ctx.message.delete()
+    else:
+        await ctx.send("Please input valid text containing 'xyz'.")
