@@ -179,7 +179,7 @@ async def count(ctx, poll):
     await ctx.send(export)
     
 @bot.command(name='ship')
-async def ship(ctx, poll):
+async def ship(ctx, arg1, arg2):
     server=ctx.guild    
     text = (arg1+arg2).replace('*', '^').lower()
     shipvalue = 0
