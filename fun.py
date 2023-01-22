@@ -194,6 +194,7 @@ async def ship(ctx, arg1, arg2):
 
 @bot.command(name='member')
 async def member(ctx):
-    server=ctx.guild    
-    await ctx.send(ctx.message.author.mention + "said:\n" + ctx.message.content[8:].replace('@', '#'))
+    server=ctx.guild
+    vandiMembers = pickle.load(open('vandi members', 'rb').read())
+    await ctx.send(ctx.message.author.mention + "said:\n" + ctx.message.content[8:].replace('@', '#') + ' ' + random.choice(vandiMembers))
     
