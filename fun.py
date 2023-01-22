@@ -181,7 +181,7 @@ async def count(ctx, poll):
 @bot.command(name='ship')
 async def ship(ctx, arg1, arg2):
     server=ctx.guild    
-    text = (arg1+arg2).replace('*', '^').lower()
+    text = (arg1+arg2).replace('*', '^').replace('@', '#').lower()
     shipvalue = 0
     cats = [':crying_cat_face:',':pouting_cat:',':smirk_cat:',':smile_cat:',':kissing_cat:',':heart_eyes_cat:']
     for i in range(len(text)):
