@@ -181,13 +181,13 @@ async def count(ctx, poll):
 @bot.command(name='ship')
 async def ship(ctx, arg1, arg2):
     server=ctx.guild    
-    text = (arg1+arg2).replace('*', '^').replace('@', '#').lower()
+    text = (arg1+arg2)
     shipvalue = 0
     cats = [':crying_cat_face:',':pouting_cat:',':smirk_cat:',':smile_cat:',':kissing_cat:',':heart_eyes_cat:']
     for i in range(len(text)):
         shipvalue += ord(text[i])
     shipvalue = (shipvalue+43)%101
     hearts = round(shipvalue/10)
-    lineone = ':sparkles: Shipping result of __**' + arg1 + '**__ and __**' + arg2 + '**__ :two_hearts:'
+    lineone = ':sparkles: Shipping result of __**' + arg1.replace('*', '^').replace('@', '#').lower() + '**__ and __**' + arg2.replace('*', '^').replace('@', '#').lower() + '**__ :two_hearts:'
     linetwo = ':heart:'*hearts + ':black_heart:'*(10-hearts) + ' - **' + str(shipvalue) + '%** match'
     await ctx.send(lineone+'\n'+linetwo+' '+cats[round(shipvalue/20)])
