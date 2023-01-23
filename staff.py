@@ -151,13 +151,13 @@ async def checkxp(ctx, num = None):
 async def checklevel(ctx, num = None):
   if num != None:
 	try:
-	  num = int(num)
-	  if num>0:
-		level = (-7+((6*num+845)/5)**0.5)/6
-		level_int = int(level - (level%1))
-		rem = int((level%1)*100)
-		await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
-	  else:
+		num = int(num)
+		if num>0:
+			level = (-7+((6*num+845)/5)**0.5)/6
+			level_int = int(level - (level%1))
+			rem = int((level%1)*100)
+			await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
+		else:
 		await ctx.send('Please give a non-zero positive number.')
 	except:
-	  await ctx.send("Please give the amount of xp to convert to levels.")
+		await ctx.send("Please give the amount of xp to convert to levels.")
