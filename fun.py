@@ -199,7 +199,7 @@ async def member(ctx):
     if ctx.message.channel.id == 995971210116612142 or ctx.message.channel.id == 995971210116612143:
         if 'xyz' in ctx.message.content[8:]:
             vandiMembers = pickle.load(open('vandi members', 'rb'))
-             await ctx.send(ctx.message.author.mention + " said:\n" + ctx.message.content[8:].replace('@', '#').replace('xyz',random.choice(vandiMembers)).replace('abc',random.choice(vandiMembers)))
-             await ctx.message.delete()
-       else:
-             await ctx.send("Please input valid text containing 'xyz'.")
+            await ctx.send(ctx.message.author.mention + " said:\n" + ctx.message.content[8:].replace('@', '#').replace('xyz',random.choice(vandiMembers)).replace('abc',random.choice(vandiMembers)))
+            await ctx.message.delete()
+        else:
+            await ctx.send("Please input valid text containing 'xyz'.")
