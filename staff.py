@@ -144,8 +144,8 @@ async def checkxp(ctx, num = None):
 				await ctx.send(str(xp))
 			else:
 				await ctx.sent('Please give a non-zero positive number.')
-			except:
-				await ctx.send("Please give a level number (positive whole number) for me to check the xp needed.")
+		except:
+			await ctx.send("Please give a level number (positive whole number) for me to check the xp needed.")
 
 @bot.command(name='checklevel')
 async def checklevel(ctx, num = None):
@@ -158,6 +158,6 @@ async def checklevel(ctx, num = None):
 				rem = int((level%1)*100)
 				await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
 			else:
-			await ctx.send('Please give a non-zero positive number.')
+				await ctx.send('Please give a non-zero positive number.')
 		except:
 			await ctx.send("Please give the amount of xp to convert to levels.")
