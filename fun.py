@@ -181,7 +181,7 @@ async def count(ctx, poll):
 @bot.command(name='ship')
 async def ship(ctx, arg1, arg2):
 	server=ctx.guild
-	if ctx.message.channel.id == 995971210116612142 or ctx.message.channel.id == 995971210116612143:
+	if ctx.message.channel.id == 998457100105687040:
 		text = (arg1+arg2).lower()
 		shipvalue = 0
 		cats = [':crying_cat_face:',':pouting_cat:',':smirk_cat:',':smile_cat:',':kissing_cat:',':heart_eyes_cat:']
@@ -196,7 +196,7 @@ async def ship(ctx, arg1, arg2):
 @bot.command(name='member')
 async def member(ctx):
 	server=ctx.guild
-	if ctx.message.channel.id == 995971210116612142 or ctx.message.channel.id == 995971210116612143:
+	if ctx.message.channel.id == 998457100105687040:
 		if 'xyz' in ctx.message.content[8:]:
 			vandiMembers = pickle.load(open('vandi members', 'rb'))
 			await ctx.send(ctx.message.author.mention + " said:\n" + ctx.message.content[8:].replace('@', '#').replace('xyz',random.choice(vandiMembers)).replace('abc',random.choice(vandiMembers)))
