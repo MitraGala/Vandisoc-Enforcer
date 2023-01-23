@@ -20,21 +20,6 @@ async def on_ready():
         global tr
         tr = i
     print(f'{bot.user.name} has connected to Discord!')
-
-@bot.event
-async def on_command_error(ctx, error):
-    skip = ['!ban',
-'!tempban',
-'!mute',
-'!unban',
-'!tempmute',
-'!unmute',
-'!mute',
-'!warn',
-'!infractions']
-    if not ctx.message.content.split(' ')[0] in skip:
-        await ctx.send('Rascal, scoundrel, idiot, fool!')
-        print(error)
     
 @bot.event
 async def on_message(ctx):
