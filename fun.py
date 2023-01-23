@@ -83,16 +83,16 @@ async def toes(ctx,arg1: Member=None):
 @bot.command(name='serf')
 async def serf(ctx):
 	if ctx.author.id == 337730118489341952:
-	server=ctx.guild
-	serf = server.get_role(995971209172885505)
-	await ctx.message.delete()
-	await ctx.send(serf.mention, delete_after = 0.5)
+		server=ctx.guild
+		serf = server.get_role(995971209172885505)
+		await ctx.message.delete()
+		await ctx.send(serf.mention, delete_after = 0.5)
 
 @bot.command(name="moderation")
 async def moderation(ctx):
 	server=ctx.guild
 	if (server.get_role(995971209294520370) in ctx.author.roles):
-	await ctx.send("https://media.discordapp.net/attachments/998442467533783082/999265268733841478/387d01d456cc9d6f2ada7d4f81245b41.png")
+		await ctx.send("https://media.discordapp.net/attachments/998442467533783082/999265268733841478/387d01d456cc9d6f2ada7d4f81245b41.png")
 
 @bot.command(name="nerdtime")
 async def nerdtime(ctx):
