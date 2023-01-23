@@ -136,28 +136,28 @@ async def stfu(ctx,arg1: Member=None):
 
 @bot.command(name="checkxp")
 async def checkxp(ctx, num = None):
-  if num != None:
-	try:
-		num = int(num)
-		if num>0:
-			xp = 10*(num-1)*(3*num+10)
-			await ctx.send(str(xp))
-		else:
-			await ctx.sent('Please give a non-zero positive number.')
-		except:
-			await ctx.send("Please give a level number (positive whole number) for me to check the xp needed.")
+	if num != None:
+		try:
+			num = int(num)
+			if num>0:
+				xp = 10*(num-1)*(3*num+10)
+				await ctx.send(str(xp))
+			else:
+				await ctx.sent('Please give a non-zero positive number.')
+			except:
+				await ctx.send("Please give a level number (positive whole number) for me to check the xp needed.")
 
 @bot.command(name='checklevel')
 async def checklevel(ctx, num = None):
-  if num != None:
-	try:
-		num = int(num)
-		if num>0:
-			level = (-7+((6*num+845)/5)**0.5)/6
-			level_int = int(level - (level%1))
-			rem = int((level%1)*100)
-			await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
-		else:
-		await ctx.send('Please give a non-zero positive number.')
-	except:
-		await ctx.send("Please give the amount of xp to convert to levels.")
+	if num != None:
+		try:
+			num = int(num)
+			if num>0:
+				level = (-7+((6*num+845)/5)**0.5)/6
+				level_int = int(level - (level%1))
+				rem = int((level%1)*100)
+				await ctx.send("Level " + str(level_int) + " and " + str(rem) + "% to the next level")
+			else:
+			await ctx.send('Please give a non-zero positive number.')
+		except:
+			await ctx.send("Please give the amount of xp to convert to levels.")
