@@ -161,3 +161,79 @@ async def checklevel(ctx, num = None):
 				await ctx.send('Please give a non-zero positive number.')
 		except:
 			await ctx.send("Please give the amount of xp to convert to levels.")
+
+@bot.command(name='mute')
+async def mute(ctx, member: discord.Member):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		await member.add_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
+		await ctx.send(embed=discord.Embed().add_field(name='',value='**Muted '+str(member)+'**'))
+
+@bot.command(name='unmute')
+async def unmute(ctx, member: discord.Member):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		await member.remove_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
+		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unmuted '+str(member)+'**'))
+
+@bot.command(name='kick')
+async def kick(ctx, member: discord.Member, *, reason=None):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		await member.kick(reason=reason)
+		if reason == None:
+			await ctx.send(embed=discord.Embed().add_field(name='',value='**Kicked '+str(member)+'**'))
+		else:
+			await ctx.send(embed=discord.Embed().add_field(name='',value='**Kicked '+str(member)+' for reason:** '+reason))
+
+@bot.command(name='ban')
+async def ban(ctx, member: discord.Member, *, reason=None):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		channel = await member.create_dm()
+		if reason == None:
+			await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+'**'))
+			await channel.send('**You have been banned from the Vandi Server.**')
+		else:
+			await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+' for reason:** '+reason))
+			await channel.send('**You have been banned from the Vandi Server for the following reason:**\n' +reason)
+		await member.ban(reason=reason, delete_message_days=0)
+
+@bot.command(name='unban')
+async def unban(ctx, id: int):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		user = await bot.fetch_user(id)
+		await ctx.guild.unban(user)
+		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unbanned <@'+str(id)+'>**'))
+
+@bot.command(name='warn')
+async def warn(ctx, user):
+	reason = ctx.message.content[7+len(user):]
+	if user[0:2] == '<@' and user[len(user)-1:] == '>':
+		if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+			filepath = 'punishments/'+user[2:-1]+'/w'+str(int(time.time()))+'.txt'
+			os.makedirs(os.path.dirname(filepath), exist_ok=True)
+			warnfile = open(filepath, 'w', encoding='utf-8')
+			secondline = 'Their current warn count is ' + str(len(os.listdir('punishments/'+user[2:-1])))
+			if reason != '':
+				await ctx.send(embed=discord.Embed().add_field(name='',value='**Warned ' + user + ' for reason: **' + reason + '\n' + secondline))
+				text = '**' + ctx.author.mention + ' warned ' + user + ' for reason: **' + reason
+				await bot.get_guild(995971208938004560).get_channel(1067007967318253588).send(embed=discord.Embed().add_field(name='',value=text))
+				warnfile.write(reason)
+			else:
+				await ctx.send(embed=discord.Embed().add_field(name='',value='**Warned ' + user + '**\n'+secondline))
+				warnfile.write('No reason given')
+	else:
+		await ctx.send('Invalid user')
+
+@bot.command(name='infractions')
+async def infractions(ctx, user):
+	text = '**Infractions of '+user+'**'
+	filepath = 'punishments/'+user[2:-1]+'/'
+	if os.path.exists(filepath):
+		count = 1
+		for i in os.listdir(filepath):
+			text += '\n' + str(count) + '. <t:' + i[1:-4] + ':F> - ' + open(filepath+i,'r').read()
+			count += 1
+		await ctx.send(embed=discord.Embed().add_field(name='',value=text))
+	else:
+		if user[0:2] != '<@' or user[len(user)-1:] != '>':
+			await ctx.send('Invalid user')
+		else:
+			await ctx.send('User has no infractions')
