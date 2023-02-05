@@ -9,6 +9,17 @@ async def sexy(ctx,arg1: Member=None):
 			await arg1.add_roles(giverole)
 			await ctx.send(arg1.mention+" has been declared to be sexy!")
 
+@bot.command(name='snazzy')
+async def sexy(ctx,arg1: Member=None):
+	server=ctx.guild
+	if ctx.author.id == 438128815529525261:
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			giverole = server.get_role(995971209235812389) # snazzy
+			await arg1.add_roles(giverole)
+			await ctx.send(arg1.mention+" Smile! You have been declared to be snazzy!")
+
 @bot.command(name='awesomecaracal')
 async def caracal(ctx,arg1: Member=None):
 	server=ctx.guild
