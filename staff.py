@@ -1,3 +1,14 @@
+@bot.command(name='epublish')
+async def epublish(ctx, vidlink):
+	channel = bot.get_channel(997397096967716894)
+	server=ctx.guild
+	if (server.get_role(995971209294520370) in ctx.author.roles):
+		if vidlink[:4] == 'http':
+			await channel.send('@everyone <@&997232048152530944> ' + vidlink)	
+			await ctx.message.delete()
+		else:
+			await ctx.send('Invalid link')
+
 @bot.command(name='news')
 async def news(ctx, newslink):
 	channel = bot.get_channel(1060796345826422854)
