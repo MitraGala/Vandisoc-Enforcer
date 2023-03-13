@@ -105,18 +105,18 @@ async def moderation(ctx):
 	if (server.get_role(995971209294520370) in ctx.author.roles):
 		await ctx.send("https://media.discordapp.net/attachments/998442467533783082/999265268733841478/387d01d456cc9d6f2ada7d4f81245b41.png")
 
-@bot.command(name="nerdtime")
-async def nerdtime(ctx):
-	server=ctx.guild
-	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
-		r = server.get_role(995971209277755411)
-		tex = server.get_member(1017780774143008838)
-		if r in tex.roles:
-			await tex.remove_roles(r)
-			await ctx.send("Nerdin' time is over")
-		else:
-			await tex.add_roles(r)
-			await ctx.send("It's nerdin' time")
+@bot.command(name='nerdtime')
+async def infractions(ctx):
+    if (bot.get_guild(995971208938004560).get_role(995971209294520370) in ctx.author.roles):
+        channel = ctx.channel
+        texbot = ctx.guild.get_member(510789298321096704)
+        perms = channel.permissions_for(texbot)
+        state = perms.view_channel
+        await channel.set_permissions(texbot, view_channel = not state)
+        if not state:
+            await ctx.reply("It's nerding time!")
+        else:
+            await ctx.reply("Nerding time is over :(")
 			
 @bot.command(name='set')
 async def set(ctx, arg1):
