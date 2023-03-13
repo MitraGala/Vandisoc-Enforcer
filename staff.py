@@ -248,17 +248,3 @@ async def infractions(ctx, user):
 			await ctx.send('Invalid user')
 		else:
 			await ctx.send('User has no infractions')
-
-@bot.command(name='nerdtime')
-async def infractions(ctx):
-    if (bot.get_guild(995971208938004560).get_role(995971209294520370) in ctx.author.roles):
-        channel = ctx.channel
-        texbot = ctx.guild.get_member(510789298321096704)
-        perms = channel.permissions_for(texbot)
-        state = perms.view_channel
-        await channel.set_permissions(texbot, view_channel = not state)
-        if not state:
-            await ctx.reply("It's nerding time!")
-        else:
-            await ctx.reply("Nerding time is over :(")
-	
