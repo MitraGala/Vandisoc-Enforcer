@@ -45,11 +45,11 @@ async def update(ctx):
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/fun.py', 'fun.temp')
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/staff.py', 'staff.temp')
 		
-		main = open('main.temp', 'r').read()
-		fun = open('fun.temp', 'r').read()
-		staff = open('staff.temp', 'r').read()
+		main = open('main.temp', 'r', encoding='utf-8').read()
+		fun = open('fun.temp', 'r', encoding='utf-8').read()
+		staff = open('staff.temp', 'r', encoding='utf-8').read()
 		
-		open('tempcode', 'w').write(main + '\n' + fun + '\n' + staff + '\nbot.run(TOKEN)')
+		open('tempcode', 'w', encoding='utf-8').write(main + '\n' + fun + '\n' + staff + '\nbot.run(TOKEN)')
 		
 		sameFile = filecmp.cmp('main.py', 'tempcode')
 		if not sameFile:
