@@ -60,4 +60,4 @@ async def update(ctx):
 
 @bot.event
 async def on_command_error(ctx, error):
-	await ctx.send('APPLE PIE MMM YUMMY')
+	await bot.get_channel(1067007967318253588).send(error)
