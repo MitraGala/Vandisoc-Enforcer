@@ -57,3 +57,7 @@ async def update(ctx):
 			quit()
 		else:
 			await ctx.send("Vandisoc is fully updated.")
+
+@bot.event
+async def on_command_error(ctx, error):
+	await ctx.send('APPLE PIE MMM YUMMY')
