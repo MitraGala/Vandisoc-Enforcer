@@ -103,7 +103,7 @@ async def brazil(ctx,arg1: Member=None):
 		else:
 			giverole = server.get_role(995971209193869423) # brazil
 			await arg1.add_roles(giverole)
-			await ctx.send(arg1.mention+" has been exiled to the Dandakāraṇya!")
+			await ctx.send(arg1.mention+" has been exiled to the Dandakaranya!")
 
 @bot.command(name='unmalaysia', aliases=['Unmalaysia', 'unmalay', 'Unmalay', 'undandaka', 'Undandaka', 'undandakaranya', 'Undandakaranya'])
 async def unbrazil(ctx,arg1: Member=None):
@@ -114,7 +114,7 @@ async def unbrazil(ctx,arg1: Member=None):
 		else:
 			takerole = server.get_role(995971209193869423) # brazil
 			await arg1.remove_roles(takerole)
-			await ctx.send(arg1.mention+" has been let out of the Dandakāraṇya.")
+			await ctx.send(arg1.mention+" has been let out of the Dandakaranya.")
 
 @bot.command(name='changspeak')
 async def changspeak(ctx,arg1: Member=None):
