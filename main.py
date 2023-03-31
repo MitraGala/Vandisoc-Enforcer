@@ -24,9 +24,22 @@ async def on_ready():
 	print(f'{bot.user.name} has connected to Discord!')
 	punishment.start()
 	
-@tasks.loop(seconds=30)
+def checkAdmin(member):
+        guild = bot.get_guild(995971208938004560)
+        admin = guild.get_role(995971209294520370)
+        return admin in member.roles
+
+@tasks.loop(seconds=10)
 async def punishment():
-	await bot.get_channel(996033099236393020).send('Punishment')
+        mutes = pickle.load(open('punish', "rb"))
+        curTime = time.time()
+        for i in mutes[:]:
+                if i['time'] < curTime:
+                        if i['mute']:
+                                guild = bot.get_guild(995971208938004560)
+                                await guild.get_member(i['user']).remove_roles(guild.get_role(996931252550647949))
+                        mutes.remove(i)
+        pickle.dump(mutes, open('punish', "wb"))
 	
 @bot.event
 async def on_message(ctx):
