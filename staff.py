@@ -1,3 +1,47 @@
+def decodeTime(timestamp):
+        finaltime = 0
+        
+        timestamp = timestamp.split('d')
+        if len(timestamp) > 1:
+                finaltime += 1000*float(timestamp[0])
+                timestamp = timestamp[1]
+        else:
+                timestamp = timestamp[0]
+
+        timestamp = timestamp.split('h')
+        if len(timestamp) > 1:
+                finaltime += 100*float(timestamp[0])
+                timestamp = timestamp[1]
+        else:
+                timestamp = timestamp[0]
+        
+        timestamp = timestamp.split('m')
+        if len(timestamp) > 1:
+                finaltime += 10*float(timestamp[0])
+                timestamp = timestamp[1]
+        else:
+                timestamp = timestamp[0]
+        
+        timestamp = timestamp.split('s')
+        if len(timestamp) > 1:
+                finaltime += 1*float(timestamp[0])
+                timestamp = timestamp[1]
+        else:
+                timestamp = timestamp[0]
+
+        return finaltime
+
+def addPunish(userid, mute, addTime):
+        punishments = pickle.load(open('punish', "rb"))
+        punishments.append({'time':time.time()+addTime, 'user':userid, 'mute':mute})
+        pickle.dump(punishments, open('punish', "wb"))
+
+@bot.command(name='tempmute')
+async def tempmute(ctx, user: discord.Member, addTime):
+        if checkAdmin(ctx.message.author):
+                await mute(ctx, user)
+                addPunish(user.id, True, decodeTime(addTime))
+
 @bot.command(name='epublish')
 async def epublish(ctx, vidlink):
 	channel = bot.get_channel(997397096967716894)
