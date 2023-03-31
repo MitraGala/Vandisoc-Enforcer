@@ -4,6 +4,7 @@ from discord import Member
 from discord import Intents
 import discord
 from discord.ext import commands
+from discord.ext import tasks
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
@@ -21,6 +22,11 @@ async def on_ready():
 			global tr
 			tr = i
 	print(f'{bot.user.name} has connected to Discord!')
+	punishment.start()
+	
+@tasks.loop(seconds=30)
+async def punishment():
+	await bot.get_channel(996033099236393020).send('Punishment')
 	
 @bot.event
 async def on_message(ctx):
