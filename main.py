@@ -29,7 +29,7 @@ def checkAdmin(member):
         admin = guild.get_role(995971209294520370)
         return admin in member.roles
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=60)
 async def punishment():
         mutes = pickle.load(open('punish', "rb"))
         curTime = time.time()
