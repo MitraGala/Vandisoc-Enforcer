@@ -3,21 +3,21 @@ def decodeTime(timestamp):
         
         timestamp = timestamp.split('d')
         if len(timestamp) > 1:
-                finaltime += 1000*float(timestamp[0])
+                finaltime += 86400*float(timestamp[0])
                 timestamp = timestamp[1]
         else:
                 timestamp = timestamp[0]
 
         timestamp = timestamp.split('h')
         if len(timestamp) > 1:
-                finaltime += 100*float(timestamp[0])
+                finaltime += 3600*float(timestamp[0])
                 timestamp = timestamp[1]
         else:
                 timestamp = timestamp[0]
         
         timestamp = timestamp.split('m')
         if len(timestamp) > 1:
-                finaltime += 10*float(timestamp[0])
+                finaltime += 60*float(timestamp[0])
                 timestamp = timestamp[1]
         else:
                 timestamp = timestamp[0]
