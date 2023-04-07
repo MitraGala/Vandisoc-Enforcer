@@ -305,7 +305,7 @@ async def results(ctx,n=5):
 		results = []
 		for m in buffer:
 		    r = [None,None]
-		    r[0] = m.reactions[0].count
+		    r[0] = m.reactions[0].count-1
 		    r[1] = m.content.split(' <@')[0]
 		    results.append(r)
 		results.sort(reverse = True, key = lambda l: l[0])
