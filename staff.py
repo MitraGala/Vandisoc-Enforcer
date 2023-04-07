@@ -294,7 +294,7 @@ async def infractions(ctx, user):
 			await ctx.send('User has no infractions')
 			
 @bot.command(name='results')
-async def results(ctx,n=7):
+async def results(ctx,n=5):
 	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		channel = bot.get_guild(995971208938004560).get_channel(1084889623127392266)
 		buffer = []
