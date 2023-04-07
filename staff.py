@@ -292,3 +292,24 @@ async def infractions(ctx, user):
 			await ctx.send('Invalid user')
 		else:
 			await ctx.send('User has no infractions')
+			
+@bot.command(name='results')
+async def results(ctx):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		channel = bot.get_guild(995971208938004560).get_channel(1084889623127392266)
+		buffer = []
+		async for message in channel.history(limit=29):
+		    buffer.append(message)
+		buffer.reverse()
+		buffer = buffer[:-4]
+		results = []
+		for m in buffer:
+		    r = [None,None]
+		    r[0] = m.reactions[0].count
+		    r[1] = m.content.split(' <@')[0]
+		    results.append(r)
+		results.sort(reverse = True, key = lambda l: l[0])
+		message = "__**Election Results**__"
+		for i in results:
+		    message += "\n"+i[1]+": "+str(i[0])
+		await ctx.send(message)
