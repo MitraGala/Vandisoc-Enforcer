@@ -298,10 +298,10 @@ async def results(ctx,n=5):
 	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		channel = bot.get_guild(995971208938004560).get_channel(1084889623127392266)
 		buffer = []
-		async for message in channel.history(limit=28):
+		async for message in channel.history(limit=29):
 		    buffer.append(message)
 		buffer.reverse()
-		buffer = buffer[:-4]
+		buffer = buffer[:-5]
 		results = []
 		for m in buffer:
 		    r = [None,None]
