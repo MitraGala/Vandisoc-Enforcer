@@ -29,6 +29,12 @@ def checkAdmin(member):
         admin = guild.get_role(995971209294520370)
         return admin in member.roles
 
+def checkStaff(member):
+        guild = bot.get_guild(995971208938004560)
+        admin = guild.get_role(995971209294520370)
+        moderator = guild.get_role(1084538138547998810)
+        return (admin in member.roles) or (moderator in member.roles)
+
 @tasks.loop(seconds=60)
 async def punishment():
         mutes = pickle.load(open('punish', "rb"))
