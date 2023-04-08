@@ -75,7 +75,7 @@ async def breaking(ctx, newslink):
 		else:
 			await ctx.send('JESSE..,,,,.')
 			
-'''@bot.command(name='verify')
+deprecated = '''@bot.command(name='verify')
 async def verify(ctx,arg1: Member=None):
 	server=ctx.guild
 	channel = bot.get_channel(998442467533783082) # general
