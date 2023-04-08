@@ -32,7 +32,7 @@ def checkAdmin(member):
 def checkStaff(member):
         guild = bot.get_guild(995971208938004560)
         moderator = guild.get_role(1084538138547998810)
-        return (admin in member.roles) or checkAdmin(member)
+        return (moderator in member.roles) or checkAdmin(member)
 
 @tasks.loop(seconds=60)
 async def punishment():
