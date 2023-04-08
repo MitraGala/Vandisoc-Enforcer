@@ -141,7 +141,7 @@ async def bam(ctx,arg1: Member=None,*arg2):
 @bot.command(name='bihar', aliases=['Bihar'])
 async def brazil(ctx,arg1: Member=None):
 	server=ctx.guild
-	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
+	if checkStaff(ctx.author):
 		if arg1 == None:
 			await ctx.send("No user given")
 		else:
