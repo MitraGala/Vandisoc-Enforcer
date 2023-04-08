@@ -107,7 +107,7 @@ async def moderation(ctx):
 
 @bot.command(name='nerdtime')
 async def infractions(ctx):
-    if checkStaff(ctx.author):
+    if (bot.get_guild(995971208938004560).get_role(995971209294520370) in ctx.author.roles):
         channel = ctx.channel
         texbot = ctx.guild.get_member(510789298321096704)
         perms = channel.permissions_for(texbot)
@@ -121,7 +121,7 @@ async def infractions(ctx):
 @bot.command(name='set')
 async def set(ctx, arg1):
 	server=ctx.guild
-	if checkStaff(ctx.author) or ctx.message.channel.id == 996034231539085412:
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.message.channel.id == 996034231539085412:
 		pastapath = "pastas/"+arg1
 		pasta = {}
 		pasta['userid']=ctx.author.id
@@ -141,7 +141,7 @@ async def set(ctx, arg1):
 @bot.command(name='pasta')
 async def pasta(ctx, arg1):
 	server=ctx.guild
-	if checkStaff(ctx.author) or ctx.message.channel.id == 996034231539085412:
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.message.channel.id == 996034231539085412:
 		pastapath = "pastas/"+arg1
 		if os.path.exists(pastapath):
 			pasta = pickle.load(open(pastapath, "rb"))

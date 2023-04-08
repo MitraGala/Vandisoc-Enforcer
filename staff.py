@@ -38,17 +38,17 @@ def addPunish(userid, mute, addTime):
 
 @bot.command(name='tempmute')
 async def tempmute(ctx, user: discord.Member, addTime):
-        if checkStaff(ctx.message.author):
+        if checkAdmin(ctx.message.author):
                 await mute(ctx, user)
                 addPunish(user.id, True, decodeTime(addTime))
 
-@bot.command(name='publish')
+@bot.command(name='epublish')
 async def epublish(ctx, vidlink):
 	channel = bot.get_channel(997397096967716894)
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(995971209294520370) in ctx.author.roles):
 		if vidlink[:4] == 'http':
-			await channel.send('<@&997232048152530944> ' + vidlink)	
+			await channel.send('@everyone <@&997232048152530944> ' + vidlink)	
 			await ctx.message.delete()
 		else:
 			await ctx.send('Invalid link')
@@ -57,7 +57,7 @@ async def epublish(ctx, vidlink):
 async def news(ctx, newslink):
 	channel = bot.get_channel(1060796345826422854)
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(1063344840651313192) in ctx.author.roles) or (server.get_role(995971209294520370) in ctx.author.roles):
 		if newslink[:4] == 'http':
 			await channel.send(newslink)	
 			await ctx.message.delete()
@@ -68,14 +68,14 @@ async def news(ctx, newslink):
 async def breaking(ctx, newslink):
 	channel = bot.get_channel(1060796345826422854)
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(1063344840651313192) in ctx.author.roles) or (server.get_role(995971209294520370) in ctx.author.roles):
 		if newslink[:4] == 'http':
 			await channel.send('<@&1063333711187300433> ' + newslink)	
 			await ctx.message.delete()
 		else:
 			await ctx.send('JESSE..,,,,.')
 			
-'''@bot.command(name='verify')
+@bot.command(name='verify')
 async def verify(ctx,arg1: Member=None):
 	server=ctx.guild
 	channel = bot.get_channel(998442467533783082) # general
@@ -120,12 +120,12 @@ async def deny(ctx,arg1: Member=None):
 			await arg1.remove_roles(takerole)
 			await channel.send(arg1.mention+" has been denied by "+ctx.author.name+" ("+str(ctx.author.id)+").")
 			await channel2.send(arg1.mention+" has been denied by "+ctx.author.name+". Rip bozo.")
-		await ctx.message.delete()'''
+		await ctx.message.delete()
 
 @bot.command(name='bam')
 async def bam(ctx,arg1: Member=None,*arg2):
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
 		if arg1 == None:
 			await ctx.send("No user given")
 		else:
@@ -141,7 +141,7 @@ async def bam(ctx,arg1: Member=None,*arg2):
 @bot.command(name='bihar', aliases=['Bihar'])
 async def brazil(ctx,arg1: Member=None):
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
 		if arg1 == None:
 			await ctx.send("No user given")
 		else:
@@ -152,13 +152,42 @@ async def brazil(ctx,arg1: Member=None):
 @bot.command(name='unbihar', aliases=['Unbihar'])
 async def unbrazil(ctx,arg1: Member=None):
 	server=ctx.guild
-	if checkStaff(ctx.message.author):
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
 		if arg1 == None:
 			await ctx.send("No user given")
 		else:
 			takerole = server.get_role(995971209193869423) # brazil
 			await arg1.remove_roles(takerole)
 			await ctx.send(arg1.mention+" has been let out of Bihar.")
+
+@bot.command(name='changspeak')
+async def changspeak(ctx,arg1: Member=None):
+	server=ctx.guild
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			giverole = server.get_role(995971209193869422)
+			if giverole in arg1.roles:
+				await arg1.remove_roles(giverole)
+				await ctx.send(arg1.mention+" has been undeported.")
+			else:
+				await arg1.add_roles(giverole)
+				await ctx.send(arg1.mention+" has been deported!")
+@bot.command(name='stfu')
+async def stfu(ctx,arg1: Member=None):
+	server=ctx.guild
+	if (server.get_role(995971209294520370) in ctx.author.roles) or ctx.author.id == 337730118489341952:
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			giverole = server.get_role(995971209185464359)
+			if giverole in arg1.roles:
+				await arg1.remove_roles(giverole)
+				await ctx.send(arg1.mention+" is allowed to speak normally again.")
+			else:
+				await arg1.add_roles(giverole)
+				await ctx.send(arg1.mention+" has been told to stfu!")
 
 @bot.command(name="checkxp")
 async def checkxp(ctx, num = None):
@@ -190,19 +219,19 @@ async def checklevel(ctx, num = None):
 
 @bot.command(name='mute')
 async def mute(ctx, member: discord.Member):
-	if checkStaff(ctx.message.author):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		await member.add_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Muted '+str(member)+'**'))
 
 @bot.command(name='unmute')
 async def unmute(ctx, member: discord.Member):
-	if checkStaff(ctx.message.author):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		await member.remove_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unmuted '+str(member)+'**'))
 
 @bot.command(name='kick')
 async def kick(ctx, member: discord.Member, *, reason=None):
-	if checkAdmin(ctx.message.author):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		await member.kick(reason=reason)
 		if reason == None:
 			await ctx.send(embed=discord.Embed().add_field(name='',value='**Kicked '+str(member)+'**'))
@@ -211,7 +240,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 
 @bot.command(name='ban')
 async def ban(ctx, member: discord.Member, *, reason=None):
-	if checkAdmin(ctx.message.author):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		channel = await member.create_dm()
 		if reason == None:
 			await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+'**'))
@@ -223,7 +252,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 
 @bot.command(name='unban')
 async def unban(ctx, id: int):
-	if checkAdmin(ctx.message.author):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
 		user = await bot.fetch_user(id)
 		await ctx.guild.unban(user)
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unbanned <@'+str(id)+'>**'))
@@ -232,8 +261,8 @@ async def unban(ctx, id: int):
 async def warn(ctx, user):
 	reason = ctx.message.content[7+len(user):]
 	if user[0:2] == '<@' and user[len(user)-1:] == '>':
-		if checkStaff(ctx.message.author):
-                        filepath = 'punishments/'+user[2:-1]+'/w'+str(int(time.time()))+'.txt'
+		if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+			filepath = 'punishments/'+user[2:-1]+'/w'+str(int(time.time()))+'.txt'
 			os.makedirs(os.path.dirname(filepath), exist_ok=True)
 			warnfile = open(filepath, 'w', encoding='utf-8')
 			secondline = 'Their current warn count is ' + str(len(os.listdir('punishments/'+user[2:-1])))
@@ -263,3 +292,26 @@ async def infractions(ctx, user):
 			await ctx.send('Invalid user')
 		else:
 			await ctx.send('User has no infractions')
+			
+@bot.command(name='results')
+async def results(ctx,n=5):
+	if (bot.get_guild(995971208938004560).get_role(995971209294520370) in bot.get_guild(995971208938004560).get_member(ctx.author.id).roles):
+		channel = bot.get_guild(995971208938004560).get_channel(1084889623127392266)
+		buffer = []
+		async for message in channel.history(limit=29):
+		    buffer.append(message)
+		buffer.reverse()
+		buffer = buffer[:-5]
+		results = []
+		for m in buffer:
+		    r = [None,None]
+		    r[0] = m.reactions[0].count-1
+		    r[1] = m.content.split(' <@')[0]
+		    results.append(r)
+		results.sort(reverse = True, key = lambda l: l[0])
+		message = "__**Election Results**__"
+		if n > len(results):
+			n = len(results)
+		for i in results[:n]:
+		    message += "\n"+i[1]+": "+str(i[0])
+		await ctx.send(message)
