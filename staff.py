@@ -143,9 +143,11 @@ async def checklevel(ctx, num = None):
 
 @bot.command(name='mute')
 async def mute(ctx, member: discord.Member):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkStaff(ctx.author):
 		await member.add_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Muted '+str(member)+'**'))
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + 'muted '+str(member)+'**'))
 
 @bot.command(name='unmute')
 async def unmute(ctx, member: discord.Member):
