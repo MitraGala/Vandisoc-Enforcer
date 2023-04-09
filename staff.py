@@ -147,25 +147,30 @@ async def mute(ctx, member: discord.Member):
 	if checkStaff(ctx.author):
 		await member.add_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Muted '+str(member)+'**'))
-		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + 'muted '+str(member)+'**'))
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' muted '+str(member)+'**'))
 
 @bot.command(name='unmute')
 async def unmute(ctx, member: discord.Member):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkStaff(ctx.author):
 		await member.remove_roles(bot.get_guild(995971208938004560).get_role(996931252550647949))
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unmuted '+str(member)+'**'))
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' unmuted '+str(member)+'**'))
 
 @bot.command(name='kick')
 async def kick(ctx, member: discord.Member, *, reason=None):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkAdmin(ctx.author):
 		await member.kick(reason=reason)
 		if reason == None:
 			await ctx.send(embed=discord.Embed().add_field(name='',value='**Kicked '+str(member)+'**'))
 		else:
 			await ctx.send(embed=discord.Embed().add_field(name='',value='**Kicked '+str(member)+' for reason:** '+reason))
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' kicked '+str(member)+'**'))
 
 @bot.command(name='ban')
 async def ban(ctx, member: discord.Member, *, reason=None):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkAdmin(ctx.author):
 		channel = await member.create_dm()
 		if reason == None:
@@ -174,17 +179,21 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 		else:
 			await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+' for reason:** '+reason))
 			await channel.send('**You have been banned from the Vandi Server for the following reason:**\n' +reason)
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' banned '+str(member)+'**'))
 		await member.ban(reason=reason, delete_message_days=0)
 
 @bot.command(name='unban')
 async def unban(ctx, id: int):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkAdmin(ctx.author):
 		user = await bot.fetch_user(id)
 		await ctx.guild.unban(user)
 		await ctx.send(embed=discord.Embed().add_field(name='',value='**Unbanned <@'+str(id)+'>**'))
+		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' unbanned <@'+str(id)+'>**'))
 
 @bot.command(name='warn')
 async def warn(ctx, user):
+	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	reason = ctx.message.content[7+len(user):]
 	if user[0:2] == '<@' and user[len(user)-1:] == '>':
 		if checkStaff(ctx.author):
@@ -197,6 +206,7 @@ async def warn(ctx, user):
 				text = '**' + ctx.author.mention + ' warned ' + user + ' for reason: **' + reason
 				await bot.get_guild(995971208938004560).get_channel(1067007967318253588).send(embed=discord.Embed().add_field(name='',value=text))
 				warnfile.write(reason)
+				await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' warned '+str(member)+'**'))
 			else:
 				await ctx.send(embed=discord.Embed().add_field(name='',value='**Warned ' + user + '**\n'+secondline))
 				warnfile.write('No reason given')
