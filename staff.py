@@ -206,7 +206,7 @@ async def warn(ctx, user):
 				text = '**' + ctx.author.mention + ' warned ' + user + ' for reason: **' + reason
 				await bot.get_guild(995971208938004560).get_channel(1067007967318253588).send(embed=discord.Embed().add_field(name='',value=text))
 				warnfile.write(reason)
-				await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' warned '+str(member)+'**'))
+			await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' warned '+str(user)+'**'))
 			else:
 				await ctx.send(embed=discord.Embed().add_field(name='',value='**Warned ' + user + '**\n'+secondline))
 				warnfile.write('No reason given')
