@@ -34,7 +34,7 @@ def checkStaff(member):
         moderator = guild.get_role(1084538138547998810)
         return (moderator in member.roles) or checkAdmin(member)
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=10)
 async def punishment():
         mutes = pickle.load(open('punish', "rb"))
         curTime = time.time()
@@ -42,7 +42,7 @@ async def punishment():
                 if i['time'] < curTime:
                         if i['mute']:
                                 guild = bot.get_guild(995971208938004560)
-                                await guild.get_member(i['user']).remove_roles(guild.get_role(996931252550647949))
+                                await guild.get_member(i['user']).remove_role(guild.get_role(996931252550647949))
                         mutes.remove(i)
         pickle.dump(mutes, open('punish', "wb"))
 	
