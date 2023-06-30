@@ -9,6 +9,14 @@ async def sexy(ctx,arg1: Member=None):
 			await arg1.add_roles(giverole)
 			await ctx.send(arg1.mention+" has been declared to be sexy!")
 
+from googletrans import Translator
+translator = Translator()
+
+@bot.command(name='trans')
+textt = ctx.message.content[7:]
+async def trans(ctx):
+	await ctx.send(translator.translate(textt).text)
+
 @bot.command(name='snazzy')
 async def sexy(ctx,arg1: Member=None):
 	server=ctx.guild
