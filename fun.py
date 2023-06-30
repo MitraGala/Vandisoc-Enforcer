@@ -12,10 +12,15 @@ async def sexy(ctx,arg1: Member=None):
 from googletrans import Translator
 translator = Translator()
 
-@bot.command(name='trans')
-async def trans(ctx):
-	textt = ctx.message.content[7:]
-	await ctx.send(translator.translate(textt).text.replace('@','#'))
+@bot.command(name='eng')
+async def eng(ctx):
+	textt = ctx.message.content[5:]
+	await ctx.reply(translator.translate(textt).text.replace('@','#'))
+
+@bot.command(name='tto')
+async def tto(ctx, arg1):
+	textt = ctx.message.content[6+len(arg1):]
+	await ctx.reply(translator.translate(textt, dest=arg1).text.replace('@','#'))
 
 @bot.command(name='snazzy')
 async def sexy(ctx,arg1: Member=None):
