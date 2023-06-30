@@ -13,9 +13,9 @@ from googletrans import Translator
 translator = Translator()
 
 @bot.command(name='trans')
-textt = ctx.message.content[7:]
 async def trans(ctx):
-	await ctx.send(translator.translate(textt).text)
+	textt = ctx.message.content[7:]
+	await ctx.send(translator.translate(textt).text.replace('@','#'))
 
 @bot.command(name='snazzy')
 async def sexy(ctx,arg1: Member=None):
