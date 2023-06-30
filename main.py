@@ -21,6 +21,9 @@ async def on_ready():
 		if i.id == 996168288168050809:
 			global tr
 			tr = i
+		if i.id == 998307079880188025:
+			global flag
+			tr = i
 	print(f'{bot.user.name} has connected to Discord!')
 	punishment.start()
 	
@@ -52,6 +55,8 @@ async def punishment():
 async def on_message(ctx):
 	if "1984" in ctx.content:
 		await ctx.add_reaction(em)
+	if "autism" in ctx.content or "autist" in ctx.content:
+		await ctx.add_reaction(flag)
 	'''if ctx.author.id == 583377694364794917:
 		await ctx.add_reaction("\N{NERD FACE}")
 		await ctx.add_reaction("\N{PILE OF POO}")
