@@ -39,10 +39,10 @@ def checkStaff(member):
 
 @tasks.loop(seconds=10)
 async def punishment():
-	try:
-        	mutes = pickle.load(open('punish', "rb"))
-	except:
-		pickle.dump([{'time': 44888128766.69225, 'user': 235148962103951360, 'mute': True}] ,open('punish', "wb"))
+        try:
+                mutes = pickle.load(open('punish', "rb"))
+        except:
+                pickle.dump([{'time': 44888128766.69225, 'user': 235148962103951360, 'mute': True}] ,open('punish', "wb"))
         curTime = time.time()
         for i in mutes[:]:
                 if i['time'] < curTime:
