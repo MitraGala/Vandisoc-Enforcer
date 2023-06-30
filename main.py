@@ -23,7 +23,7 @@ async def on_ready():
 			tr = i
 		if i.id == 998307079880188025:
 			global flag
-			tr = i
+			flag = i
 	print(f'{bot.user.name} has connected to Discord!')
 	punishment.start()
 	
