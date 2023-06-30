@@ -39,7 +39,10 @@ def checkStaff(member):
 
 @tasks.loop(seconds=10)
 async def punishment():
-        mutes = pickle.load(open('punish', "rb"))
+	try:
+        	mutes = pickle.load(open('punish', "rb"))
+	except:
+		pickle.dump([{'time': 44888128766.69225, 'user': 235148962103951360, 'mute': True}] ,open('punish', "wb"))
         curTime = time.time()
         for i in mutes[:]:
                 if i['time'] < curTime:
@@ -55,7 +58,7 @@ async def punishment():
 async def on_message(ctx):
 	if "1984" in ctx.content:
 		await ctx.add_reaction(em)
-	if "autism" in ctx.content or "autist" in ctx.content:
+	if "autism" in ctx.content or "autis" in ctx.content.lower():
 		await ctx.add_reaction(flag)
 	'''if ctx.author.id == 583377694364794917:
 		await ctx.add_reaction("\N{NERD FACE}")
