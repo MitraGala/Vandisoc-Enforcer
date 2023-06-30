@@ -70,7 +70,7 @@ async def active(ctx):
 @bot.command(name='update')
 async def update(ctx):
 	server=ctx.guild
-	if ctx.author.id == 835099961128910848 or ctx.author.id == 337730118489341952:
+	if ctx.author.id == 1122533202750357535 or ctx.author.id == 337730118489341952:
 		urllib.request.urlcleanup()
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/main.py', 'main.temp')
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/fun.py', 'fun.temp')
