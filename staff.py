@@ -75,6 +75,34 @@ async def breaking(ctx, newslink):
 		else:
 			await ctx.send('JESSE..,,,,.')
 
+@bot.command(name='unserf')
+async def unserf(ctx):
+	server=ctx.guild
+	roles = ctx.author.roles
+	citizenrole = server.get_role(995971209156100133)
+	eliterole = server.get_role(995971209172885508)
+	aristocratrole = server.get_role(995971209172885511)
+	serfrole = server.get_role(995971209172885505)
+	peasantrole = server.get_role(995971209172885504)
+	burgherrole = server.get_role(995971209172885506)
+	merchantrole = server.get_role(995971209172885507)
+	if eliterole in roles or aristocratrole in roles:
+		if serfrole in roles or citizenrole in roles:
+			await ctx.author.remove_roles(serfrole)
+			await ctx.author.remove_roles(citizenrole)
+			await ctx.send('Fixed Serf and Citizen roles.')
+		else:
+			await ctx.send('You are not a Serf.')
+	elif peasantrole in roles or burgherrole in roles or merchantrole in roles:
+		if serfrole in roles:
+			await ctx.author.remove_roles(serfrole)
+			await ctx.send('Fixed Serf role.')
+		else:
+			await ctx.send('You are not a Serf.')
+	else:
+		await ctx.send('LOL rip bozo')
+
+
 @bot.command(name='bam')
 async def bam(ctx,arg1: Member=None,*arg2):
 	server=ctx.guild
