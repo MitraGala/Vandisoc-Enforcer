@@ -46,7 +46,7 @@ async def caracal(ctx,arg1: Member=None):
 
 @bot.command(name='goodbye')
 async def goodbye(ctx):
-	channel = await member.create_dm()
+	channel = await ctx.author.create_dm()
 	await ctx.send(ctx.author.mention + ' said goodbye.')
 	await channel.send('https://discord.gg/qAC8nU6EJj')
 	await ctx.author.kick(reason=None)
