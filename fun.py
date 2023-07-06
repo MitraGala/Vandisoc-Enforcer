@@ -44,6 +44,13 @@ async def caracal(ctx,arg1: Member=None):
 			await arg1.add_roles(giverole)
 			await ctx.send("awesomecaracal")
 
+@bot.command(name='goodbye')
+async def goodbye(ctx):
+	channel = await member.create_dm()
+	await ctx.send(ctx.author.mention + ' said goodbye.')
+	await channel.send('https://discord.gg/qAC8nU6EJj')
+	await ctx.author.kick(reason=None)
+
 @bot.command(name='reddy')
 async def reddy(ctx,arg1: Member=None):
 	server=ctx.guild
