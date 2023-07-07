@@ -51,9 +51,9 @@ async def punishment():
                                 if (not guild.get_member(i['user'])) != True:
                                         print(i)
                                         await guild.get_member(i['user']).remove_roles(guild.get_role(996931252550647949))
-			else:
-				guild = bot.get_guild(995971208938004560)
-				await unban(ctx, i['user'])
+                        else:
+                                guild = bot.get_guild(995971208938004560)
+                                await unban(ctx, i['user'])
                         mutes.remove(i)
         pickle.dump(mutes, open('punish', "wb"))
 	
