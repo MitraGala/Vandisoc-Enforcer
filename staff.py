@@ -226,7 +226,11 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 		await member.ban(reason=reason, delete_message_days=0)
 
 @bot.command(name='unban')
-async def unban(ctx, id: int):
+async def unban(ctx, userinput):
+	if userinput[0] == '<':
+		id = int(userinput[2:-1])
+	else:
+		id = int(userinput)
 	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkAdmin(ctx.author):
 		user = await bot.fetch_user(id)
