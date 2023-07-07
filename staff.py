@@ -43,10 +43,19 @@ async def tempmute(ctx, user: discord.Member, addTime):
                 addPunish(user.id, True, decodeTime(addTime))
 
 @bot.command(name='tempban')
-async def tempban(ctx, user: discord.Member, addTime):
+async def tempban(ctx, user: discord.Member, addTime, *, reason=None):
+        infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
         if checkStaff(ctx.author):
-                await ban(ctx, user, None)
+                channel = await user.create_dm()
+                if reason == None:
+                        await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+'**'))
+                        await channel.send('**You have been temporarily banned from the Vandi Server.**')
+                else:
+                        await ctx.send(embed=discord.Embed().add_field(name='',value='**Banned '+str(member)+' for reason:** '+reason))
+                        await channel.send('**You have been temporarily banned from the Vandi Server for the following reason:**\n' +reason)
+                await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' banned '+str(member)+'**'))
                 addPunish(user.id, False, decodeTime(addTime))
+                await user.ban(reason=None, delete_message_days=0)
 
 @bot.command(name='publish')
 async def epublish(ctx, vidlink):
