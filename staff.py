@@ -42,6 +42,12 @@ async def tempmute(ctx, user: discord.Member, addTime):
                 await mute(ctx, user)
                 addPunish(user.id, True, decodeTime(addTime))
 
+@bot.command(name='tempban')
+async def tempban(ctx, user: discord.Member, addTime):
+        if checkStaff(ctx.author):
+                await ban(ctx, user, None)
+                addPunish(user.id, False, decodeTime(addTime))
+
 @bot.command(name='publish')
 async def epublish(ctx, vidlink):
 	channel = bot.get_channel(997397096967716894)
