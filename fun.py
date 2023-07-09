@@ -22,6 +22,17 @@ async def tto(ctx, arg1):
 	textt = ctx.message.content[6+len(arg1):]
 	await ctx.reply(translator.translate(textt, dest=arg1).text.replace('@','#'))
 
+bot.command(name='jumble')
+async def jumble(ctx):
+	textt = ctx.message.content[8:]
+	textt = translator.translate(textt, dest='zh-tw').text
+	textt = translator.translate(textt, dest='sw').text
+	textt = translator.translate(textt, dest='tg').text
+	textt = translator.translate(textt, dest='ar').text
+	finaltext = translator.translate(textt).text
+	await ctx.reply(finaltext.replace('@','#'))
+
+
 @bot.command(name='snazzy')
 async def sexy(ctx,arg1: Member=None):
 	server=ctx.guild
