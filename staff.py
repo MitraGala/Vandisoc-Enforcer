@@ -1,9 +1,11 @@
 @bot.command(name='purge')
-async def purge(ctx, limit=50):
+async def purge(ctx, limit=100):
 	if checkStaff(ctx.author):
 		await ctx.message.delete()
 		try:
 			limit = int(limit)
+			if limit > 100:
+				limit = 100
 			await ctx.channel.purge(limit=limit)
 			return await ctx.send(f"Purged {limit} messages")
 		except:
