@@ -1,3 +1,13 @@
+@bot.command(name='purge')
+async def purge(ctx, limit=50):
+	await ctx.message.delete()
+	try:
+		limit = int(limit)
+		await ctx.channel.purge(limit=limit)
+		return await ctx.send(f"Purged {limit} messages")
+	except:
+		return await ctx.send("That ain't a real number idiot")
+
 def decodeTime(timestamp):
         finaltime = 0
         
