@@ -94,7 +94,7 @@ async def on_message_edit(before,after):
         filepath = 'messages/'+str(before.channel.id)+'/'
         filepath += (before.created_at + datetime.timedelta(hours=10)).strftime("%Y/%m/%d/%H")
         filepath += '/'+str(before.id)+'.txt'
-        message = open(filepath, 'a').write('\n\nEDIT\n'+after.content)
+        message = open(filepath, 'a', encoding='utf-8').write('\n\nEDIT\n'+after.content)
 
 @bot.command(name='activity')
 async def msgcount(ctx):
