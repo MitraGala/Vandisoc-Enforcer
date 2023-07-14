@@ -104,7 +104,7 @@ async def archived(ctx):
                     messages.remove(i)
             break
 
-            await ctx.send(str(len(messages))+' messages archived.')
+    await ctx.send(str(len(messages))+' messages archived.')
 
 @bot.command(name='news')
 async def news(ctx, newslink):
