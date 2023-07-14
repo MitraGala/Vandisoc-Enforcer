@@ -77,6 +77,34 @@ async def on_message(ctx):
 		await ctx.add_reaction(tr)'''
 	await bot.process_commands(ctx)
 
+	channelpath = 'messages/'+str(ctx.channel.id)+'/'
+	timepath = channelpath + datetime.datetime.now().strftime("%Y/%m/%d/%H")+'/'
+	if not os.path.exists(timepath):
+		os.makedirs(timepath)
+	content = str(ctx.author.id)+'\n'+ctx.content
+	if ctx.attachments:
+		content += '\n\nATTACHED'
+		for i in ctx.attachments:
+			url = i.url.split('/')
+			content += '\n'+url[5]+'/'+url[6]
+	open(timepath+str(ctx.id)+'.txt', 'w+', encoding='utf-8').write(content)
+
+@bot.event
+async def on_message_edit(before,after):
+        filepath = 'messages/'+str(before.channel.id)+'/'
+        filepath += (before.created_at + datetime.timedelta(hours=10)).strftime("%Y/%m/%d/%H")
+        filepath += '/'+str(before.id)+'.txt'
+        message = open(filepath, 'a').write('\n\nEDIT\n'+after.content)
+
+@bot.command(name='activity')
+async def msgcount(ctx):
+        ids = []
+        messages = [i async for i in ctx.channel.history()]
+        for i in messages:
+                if not i.author.id in ids:
+                        ids.append(i.author.id)
+        await ctx.send(str(len(ids)) + ' members have spoken in the past 100 messages.')
+
 @bot.command(name='active')
 async def active(ctx):
 	await ctx.send("I'm up and running "+ctx.author.name)
