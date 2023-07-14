@@ -83,6 +83,29 @@ async def epublish(ctx, vidlink):
 		else:
 			await ctx.send('Invalid link')
 
+@bot.command(name='archived')
+async def archived(ctx):
+    messages = []
+
+    for i in os.walk('messages/'):
+        messages.append(i)
+
+    while True:
+        done = 0
+        for i in messages[:]:
+            if not type(i) is str:
+                done += 1
+                for n in i:
+                    messages.append(n)
+                messages.remove(i)
+        if done == 0:
+            for i in messages[:]:
+                if len(i) != 23:
+                    messages.remove(i)
+            break
+
+            await ctx.send(str(len(messages))+' messages archived.')
+
 @bot.command(name='news')
 async def news(ctx, newslink):
 	channel = bot.get_channel(1060796345826422854)
