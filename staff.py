@@ -313,3 +313,29 @@ async def infractions(ctx, user):
 			await ctx.send('Invalid user')
 		else:
 			await ctx.send('User has no infractions')
+
+@bot.command(name='verify')
+async def verify(ctx, member: discord.Member=None):
+	if checkStaff(ctx.author):
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			server = bot.get_guild(995971208938004560)
+			await member.remove_roles(server.get_role(1129715223998238832)) # unverified
+			await member.add_roles([server.get_role(995971209172885505),server.get_role(995971209156100133)]) # serf + citizen
+			await ctx.delete()
+			await server.get_channel(1129720625146114129).send(member.mention, "was verified by", ctx.author.name) # logging
+			await server.get_channel(998442467533783082).send("Welcome " + member.mention + "! You were verified by " + ctx.author.name + ".") # general
+
+@bot.command(name='deny')
+async def deny(ctx, member: discord.Member=None):
+	if checkStaff(ctx.author):
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			server = bot.get_guild(995971208938004560)
+			await member.remove_roles(server.get_role(1129715223998238832)) # unverified
+			await member.add_roles(server.get_role(1129722235322650668)) # denied
+			await ctx.delete()
+			await server.get_channel(1129720625146114129).send(member.mention, "was denied by", ctx.author.name) # logging
+			await server.get_channel(998442467533783082).send(member.mention + "was denied by " + ctx.author.name + ".\nRIP bozo.") # general
