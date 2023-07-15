@@ -321,7 +321,7 @@ async def verify(ctx, member: discord.Member=None):
 			await ctx.send("No user given")
 		else:
 			server = bot.get_guild(995971208938004560)
-			await member.remove_roles(server.get_role(1129715223998238832)) # unverified
+			await member.remove_roles(server.get_role(1129715223998238832),server.get_role(1129722235322650668)) # unverified (+denied as well if incorrectly denied)
 			await member.add_roles(server.get_role(995971209172885505),server.get_role(995971209156100133)) # serf + citizen
 			await ctx.message.delete()
 			await server.get_channel(1129720625146114129).send(member.mention + " was verified by " + ctx.author.name) # logging
