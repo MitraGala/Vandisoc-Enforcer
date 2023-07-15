@@ -317,7 +317,7 @@ async def infractions(ctx, user):
 @bot.command(name='verify')
 async def verify(ctx, member: discord.Member=None):
 	if checkStaff(ctx.author):
-		if arg1 == None:
+		if member == None:
 			await ctx.send("No user given")
 		else:
 			server = bot.get_guild(995971208938004560)
@@ -330,7 +330,7 @@ async def verify(ctx, member: discord.Member=None):
 @bot.command(name='deny')
 async def deny(ctx, member: discord.Member=None):
 	if checkStaff(ctx.author):
-		if arg1 == None:
+		if member == None:
 			await ctx.send("No user given")
 		else:
 			server = bot.get_guild(995971208938004560)
