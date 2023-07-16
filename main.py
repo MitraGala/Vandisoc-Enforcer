@@ -5,6 +5,7 @@ from discord import Intents
 import discord
 from discord.ext import commands
 from discord.ext import tasks
+from PIL import Image
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
