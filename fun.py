@@ -44,33 +44,34 @@ async def sexy(ctx,arg1: Member=None):
 			await arg1.add_roles(giverole)
 			await ctx.send(arg1.mention+" Smile! You have been declared to be snazzy!")
 
-@bot.command(name='makerace')
-async def makerace(ctx, arg1: int=0, arg2: int=0, arg3: int=0):
+@bot.command(name='randomrace')
+async def randomrace(ctx):
         phenotypes = os.listdir("phenotypes/")[1:]
-        if arg3 == 0:
-                if arg1 == 0:
-                        random.shuffle(phenotypes)
-                else:
-                        copytype = phenotypes[:]
-                        phenotypes[0] = copytype[arg1-1]
-                        phenotypes[1] = copytype[arg2-1]
-                racename = phenotypes[0][:-4] + ' ' + phenotypes[1][:-4]
-                img1 = Image.open("phenotypes/"+phenotypes[0]).convert("RGBA")
-                img2 = Image.open("phenotypes/"+phenotypes[1]).convert("RGBA")
-                img3 = Image.blend(img1,img2, 0.5).save('phenotypes/aacreated/'+racename+'.png')
-                await ctx.reply("**New Race:**\n"+racename,file=discord.File('phenotypes/aacreated/'+racename+'.png'))
+        random.shuffle(phenotypes)
+        racename = phenotypes[0][:-4] + ' ' + phenotypes[1][:-4]
+        img1 = Image.open("phenotypes/"+phenotypes[0]).convert("RGBA")
+        img2 = Image.open("phenotypes/"+phenotypes[1]).convert("RGBA")
+        img3 = Image.blend(img1,img2, 0.5).save('phenotypes/aacreated/'+racename+'.png')
+        await ctx.reply("**New Race:**\n"+racename,file=discord.File('phenotypes/aacreated/'+racename+'.png'))
+
+@bot.command(name='mr')
+async def mr(ctx):
+        if ctx.message.channel.id == 998442467533783082:
+                await ctx.send('Or perhaps we could go to <#998457100105687040>')
         else:
-                copytype = phenotypes[:]
-                phenotypes[0] = copytype[arg1-1]
-                phenotypes[1] = copytype[arg2-1]
-                phenotypes[2] = copytype[arg3-1]
-                racename = phenotypes[0][:-4] + ' ' + phenotypes[1][:-4] + ' ' + phenotypes[2][:-4]
-                img1 = Image.open("phenotypes/"+phenotypes[0]).convert("RGBA")
-                img2 = Image.open("phenotypes/"+phenotypes[1]).convert("RGBA")
-                img3 = Image.open("phenotypes/"+phenotypes[2]).convert("RGBA")
-                img4 = Image.blend(img1,img2, 0.5)
-                img5 = Image.blend(img4,img3, 1/3).save('phenotypes/aacreated/'+racename+'.png')
-                await ctx.reply("**New Race:**\n"+racename,file=discord.File('phenotypes/aacreated/'+racename+'.png'))
+                ID = str(random.randint(0, 1000000))
+                arguments = ctx.message.content.split(' ')[1:]
+                phenotypes = os.listdir("phenotypes/")[1:]
+                iterate = 1
+                img = Image.open("phenotypes/"+phenotypes[0]).convert("RGBA")
+                racename = ''
+                for i in arguments:
+                        img2 = Image.open("phenotypes/"+phenotypes[int(i)-1]).convert("RGBA")
+                        img = Image.blend(img,img2, 1/iterate)
+                        racename = racename + ' ' + phenotypes[int(i)-1][:-4]
+                        iterate += 1
+                img.save('phenotypes/aacreated/'+ID+'.png')
+                await ctx.reply("**New Race:**\n"+racename[1:],file=discord.File('phenotypes/aacreated/'+ID+'.png'))
 
 @bot.command(name='racehelp')
 async def racehelp(ctx):
