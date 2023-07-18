@@ -77,6 +77,48 @@ async def mr(ctx):
 async def racehelp(ctx):
         await ctx.reply(file=discord.File('phenotypes/aacreated/racehelp.png'))
 
+@bot.command(name='define')
+async def define(ctx, arg1):
+        definitions = PyDictionary().meaning(arg1, disable_errors=True)
+        finaltext = ''
+        if definitions == None:
+                n = ''
+                vowel = arg1[0].lower()
+                if vowel == 'a' or vowel == 'e' or vowel == 'i' or vowel == 'o' or vowel == 'u':
+                        n = 'n'
+                await ctx.reply('What the hell is a'+n+' '+arg1.replace('@','#'))
+        else:
+                for i in definitions:
+                        finaltext += '**'+i+'**\n'
+                        for u in definitions[i]:
+                                finaltext += '- '+ u
+                                if '(' in u:
+                                        finaltext += ')\n'
+                                else:
+                                        finaltext += '\n'
+                await ctx.reply(finaltext)
+
+@bot.command(name='engdef')
+async def engdef(ctx, *, arg2):
+        arg1 = translator.translate(arg2).text.replace('@','#')
+        if len(arg1.split(' ')) == 1:
+                definitions = PyDictionary().meaning(arg1, disable_errors=True)
+        else:
+                definitions = None
+        finaltext = ''
+        if definitions == None:
+                await ctx.reply('Cannot define "'+arg2.replace('@','#')+'"')
+        else:
+                for i in definitions:
+                        finaltext += '**'+i+'**\n'
+                        for u in definitions[i]:
+                                finaltext += '- '+ u
+                                if '(' in u:
+                                        finaltext += ')\n'
+                                else:
+                                        finaltext += '\n'
+                await ctx.reply(finaltext)
+
 @bot.command(name='awesomecaracal')
 async def caracal(ctx,arg1: Member=None):
 	server=ctx.guild
