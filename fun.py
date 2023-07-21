@@ -107,7 +107,8 @@ async def convert(ctx, number: float=1.0, mes1: str='ft', mes2: str='cm'):
 		ft = int(fnm)
 		i = fnm-ft
 		await ctx.reply(str(number)+mes1+' is '+str(ft)+"'"+str(i)+'"')
-        await ctx.reply(str(number)+mes1+' is '+str(fnm)+mes2)
+	else:
+        	await ctx.reply(str(number)+mes1+' is '+str(fnm)+mes2)
 
 @bot.command(name='engdef')
 async def engdef(ctx, *, arg2):
