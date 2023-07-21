@@ -98,6 +98,13 @@ async def define(ctx, arg1):
                                         finaltext += '\n'
                 await ctx.reply(finaltext)
 
+@bot.command(name='convert')
+async def convert(ctx, number: float=1.0, mes1: str='ft', mes2: str='cm'):
+        conversions = {'mm':0.1,'cm':1.0,'m':100.0, 'km':100000.0, 'ft':30.48, 'in':2.54, 'mi':160934.4}
+        nicm = number * conversions[mes1]
+        fnm = nicm/conversions[mes2]
+        await ctx.reply(str(number)+mes1+' is '+str(fnm)+mes2)
+
 @bot.command(name='engdef')
 async def engdef(ctx, *, arg2):
         arg1 = translator.translate(arg2).text.replace('@','#')
