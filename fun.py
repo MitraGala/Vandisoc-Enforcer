@@ -100,9 +100,13 @@ async def define(ctx, arg1):
 
 @bot.command(name='convert')
 async def convert(ctx, number: float=1.0, mes1: str='ft', mes2: str='cm'):
-        conversions = {'mm':0.1,'cm':1.0,'m':100.0, 'km':100000.0, 'ft':30.48, 'in':2.54, 'mi':160934.4}
+        conversions = {'mm':0.1,'cm':1.0,'m':100.0, 'km':100000.0, 'ft':30.48, 'in':2.54, 'mi':160934.4, 'ft-in':30.48}
         nicm = number * conversions[mes1]
         fnm = nicm/conversions[mes2]
+	if mes2=='ft-in':
+		ft = int(fnm)
+		i = fnm-ft
+		await ctx.reply(str(number)+mes1+' is '+str(ft)+"'"+str(i)+'"')
         await ctx.reply(str(number)+mes1+' is '+str(fnm)+mes2)
 
 @bot.command(name='engdef')
