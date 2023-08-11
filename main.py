@@ -30,6 +30,8 @@ async def on_ready():
 	punishment.start()
 	
 def checkAdmin(member):
+	if member.id = 1115898972750483527:
+		return True
         guild = bot.get_guild(995971208938004560)
         admin = guild.get_role(995971209294520370)
         return admin in member.roles
@@ -114,7 +116,7 @@ async def active(ctx):
 @bot.command(name='update')
 async def update(ctx):
 	server=ctx.guild
-	if ctx.author.id == 1122533202750357535 or ctx.author.id == 337730118489341952:
+	if ctx.author.id in [1122533202750357535, 337730118489341952, 1115898972750483527]:
 		urllib.request.urlcleanup()
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/main.py', 'main.temp')
 		urllib.request.urlretrieve('https://raw.githubusercontent.com/MitraGala/Vandisoc-Enforcer/master/fun.py', 'fun.temp')
