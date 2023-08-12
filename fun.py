@@ -178,6 +178,17 @@ async def unserb(ctx,arg1: Member=None):
 			await arg1.remove_roles(takerole)
 			await ctx.send(arg1.mention+" has been caught recognising Kosovo!")
 
+@bot.command(name='medgang')
+async def medgang(ctx,arg1: Member=None):
+	server=ctx.guild
+	if ctx.author.id == 595643831999922210:
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			giverole = server.get_role(1139956447153758218) # Mediterranean Gang
+			await arg1.add_roles(giverole)
+			await ctx.send(arg1.mention+" is now part of the Mediterranean Gang!")
+
 @bot.command(name='amber')
 async def amber(ctx):
 	await ctx.send('This command, it does absolutely nothing other than give this response. Try it, it\'s real')
