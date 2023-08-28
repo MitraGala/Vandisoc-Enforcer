@@ -250,7 +250,7 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' kicked '+str(member)+'**'))
 
 @bot.command(name='ban')
-async def ban(ctx, member: discord.Member=None, *, reason=None):
+async def ban(ctx, member: discord.Member, *, reason=None):
 	infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
 	if checkAdmin(ctx.author):
 		channel = await member.create_dm()
