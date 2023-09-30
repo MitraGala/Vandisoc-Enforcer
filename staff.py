@@ -1,11 +1,12 @@
 @bot.command()
 async def createvotereaction(ctx):
-    await ctx.send("React to this message to get your voter ID.")  # Message to react to
+    await ctx.send("React to this message to get your voter ID. \n *Note: if you do not receive a DM, check your privacy settings*")  # Message to react to
     while True:
         reaction = await bot.wait_for("reaction_add")  # Wait for a reaction
         if str(reaction[0]) == '📐':
                 channel = await reaction[1].create_dm()
-                await channel.send('**Your voter ID is:**\n`'+encodeVote(ctx.author.id)+'`\n\nDo NOT share this ID with anyone.')
+                await channel.send('**Your voter ID is as follows. Do NOT share this with anyone.')
+		await channel.send(encodeVote(ctx.author.id))
 
 @bot.command(name='purge')
 async def purge(ctx, limit=100):
