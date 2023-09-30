@@ -6,7 +6,7 @@ async def createvotereaction(ctx):
 			reaction = await bot.wait_for("reaction_add")  # Wait for a reaction
 			if str(reaction[0]) == '📐':
 				channel = await reaction[1].create_dm()
-				await channel.send('**Your voter ID is as follows. Do NOT share this with anyone.**')
+				await channel.send('Please vote at: <https://forms.gle/Y58TDkngamVrf7pa8>\n\nPlease do not share your voter ID with anyone. Your voter ID is:')
 				await channel.send(encodeVote(ctx.author.id))
 
 @bot.command(name='purge')
