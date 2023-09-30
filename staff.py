@@ -291,8 +291,11 @@ def decodeVote(encoded):
 
 @bot.command(name='voterid')
 async def voterid(ctx):
-	channel = await member.create_dm()
-	await channel.send('**Your voter ID is:**\n`'+encodeVote(ctx.author.id)+'`')
+	channel = await ctx.author.create_dm()
+	try:
+		await channel.send('**Your voter ID is:**\n`'+encodeVote(ctx.author.id)+'`\n\nDo NOT share this ID with anyone.')
+	except:
+		await ctx.send('Error: User DMs disabled.')
 
 @bot.command(name='unban')
 async def unban(ctx, userinput):
