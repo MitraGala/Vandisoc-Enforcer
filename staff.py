@@ -2,12 +2,15 @@
 async def createvotereaction(ctx):
 	if ctx.author.id == 1122533202750357535:
 		await ctx.send("React to this message to get your voter ID. \n*Note: if you do not receive a DM, check your privacy settings*")  # Message to react to
-		while True:
-			reaction = await bot.wait_for("reaction_add")  # Wait for a reaction
-			if str(reaction[0]) == '📐':
-				channel = await reaction[1].create_dm()
-				await channel.send('Please vote at: <https://forms.gle/Y58TDkngamVrf7pa8>\n\nPlease do not share your voter ID with anyone. Your voter ID is:')
-				await channel.send(encodeVote(reaction[1].id))
+
+@bot.event
+async def on_raw_reaction_add(reaction):
+        if reaction.channel_id == 1084889623127392266:
+                userpart = bot.get_guild(995971208938004560).get_member(reaction.user_id)
+                if reaction.emoji.name == '📐':
+                        channel = await userpart.create_dm()
+                        await channel.send('Please vote at: <https://forms.gle/Y58TDkngamVrf7pa8>\n\nPlease do not share your voter ID with anyone. Your voter ID is:')
+                        await channel.send(encodeVote(reaction.user_id))
 
 @bot.command(name='purge')
 async def purge(ctx, limit=100):
