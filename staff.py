@@ -263,6 +263,37 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 		await infractions.send(embed=discord.Embed().add_field(name='',value='**' + ctx.author.name + ' banned '+str(member)+'**'))
 		await member.ban(reason=reason, delete_message_days=0)
 
+def encodeVote(rawid):
+    ID = str(rawid)
+    letters = '4КЋЌӮЯZҎЮӾМЭСҞЦЂҬЄЅЎЁЛҪҼҰДӶРХӔҸЕ50ТӲ1ӇӰ7Ӧ3ФЈ6ӉӁЏІНҠӨШҶАҒҺҌӀЉЇЩЗЊӘ8ЍЪЙӢҐӋӠҮПВЃ9ӐӺӜҴЫӒЧҢӼО2ГУҨЀЬҤБҲИЖҔ'
+    encoded = ''
+    if len(ID) % 2 == 1:
+        ID = '0' + ID
+    backw = ''.join(reversed(ID))
+    for i in range(len(backw)):
+        if i % 2 != 1:
+            encoded += letters[int(backw[i]+backw[i+1])]
+    return encoded
+
+
+def decodeVote(encoded):
+    letters = '4КЋЌӮЯZҎЮӾМЭСҞЦЂҬЄЅЎЁЛҪҼҰДӶРХӔҸЕ50ТӲ1ӇӰ7Ӧ3ФЈ6ӉӁЏІНҠӨШҶАҒҺҌӀЉЇЩЗЊӘ8ЍЪЙӢҐӋӠҮПВЃ9ӐӺӜҴЫӒЧҢӼО2ГУҨЀЬҤБҲИЖҔ'
+    decoded = ''
+    for i in encoded:
+        tDecoded = str(letters.index(i))
+        if len(tDecoded) == 1:
+            tDecoded = '0' + tDecoded
+        decoded += tDecoded
+    backw = ''.join(reversed(decoded))
+    if backw[0] == '0':
+        backw = backw[1:]
+    return backw
+
+@bot.command(name='voterid')
+async def voterid(ctx):
+	channel = await member.create_dm()
+	await channel.send('**Your voter ID is:**\n`'+encodeVote(ctx.author.id)+'`')
+
 @bot.command(name='unban')
 async def unban(ctx, userinput):
 	if userinput[0] == '<':
