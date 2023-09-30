@@ -6,7 +6,7 @@ async def createvotereaction(ctx):
         if str(reaction[0]) == '📐':
                 channel = await reaction[1].create_dm()
                 await channel.send('**Your voter ID is as follows. Do NOT share this with anyone.')
-		await channel.send(encodeVote(ctx.author.id))
+                await channel.send(encodeVote(ctx.author.id))
 
 @bot.command(name='purge')
 async def purge(ctx, limit=100):
