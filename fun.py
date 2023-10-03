@@ -341,12 +341,13 @@ async def member(ctx):
 			await ctx.send("Please input valid text containing 'xyz'.")
 
 @bot.command(name='aitext')
-async def aitext(ctx, rootx):
+async def aitext(ctx, rootx, int: length = 20):
+    if length > 40:
+            length = 20
     root = rootx.replace('@','#')
     dictionary = {}
 
     def average(input):
-        global dictionary
         cut = input.lower().replace('\n',' ').split(' ')[1:]
         cut += ''
         old = ''
@@ -374,7 +375,7 @@ async def aitext(ctx, rootx):
     def createText(root):
         current = root
         message = ''
-        for i in range(50):
+        for i in range(length):
             try:
                 current = random.choice(dictionary[current])
                 dictionary.pop(current)
