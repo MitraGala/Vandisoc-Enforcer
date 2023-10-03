@@ -339,3 +339,47 @@ async def member(ctx):
 			await ctx.message.delete()
 		else:
 			await ctx.send("Please input valid text containing 'xyz'.")
+
+@bot.command(name='aitext')
+async def aitext(ctx, rootx):
+    root = rootx.replace('@','#')
+    dictionary = {}
+
+    def average(input):
+        global dictionary
+        cut = input.lower().replace('\n',' ').split(' ')[1:]
+        cut += ''
+        old = ''
+        for i in cut:
+            if 'http' in i or '@' in i or ':' in i or '/' in i:
+                continue
+            if not old in dictionary:
+                dictionary[old] = []
+            dictionary[old].append(i)
+            old = i
+
+    month = random.choice(os.listdir('messages/998442467533783082/2023/'))
+    day = random.choice(os.listdir('messages/998442467533783082/2023/'+month+'/'))
+    hour = random.choice(os.listdir('messages/998442467533783082/2023/'+month+'/'+day+'/'))
+    path = 'messages/998442467533783082/2023/'+month+'/'+day+'/'+hour+'/'
+
+    for i in os.listdir(path):
+        average(open(path+'/'+i, 'r', encoding='UTF-8').read())
+
+    try:
+        dictionary.pop('edit')
+    except:
+        1+1
+
+    def createText(root):
+        current = root
+        message = ''
+        for i in range(50):
+            try:
+                current = random.choice(dictionary[current])
+                dictionary.pop(current)
+            except:
+                current = random.choice(list(dictionary.items()))[0]
+            message += current + ' '
+        return root + ' ' + message
+    await ctx.send(createText(root))
