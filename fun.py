@@ -341,9 +341,9 @@ async def member(ctx):
 			await ctx.send("Please input valid text containing 'xyz'.")
 
 @bot.command(name='aitext')
-async def aitext(ctx, rootx, int: length = 20):
-    if length > 40:
-            length = 20
+async def aitext(ctx, rootx, length = 50):
+    if length > 80:
+        length = 80
     root = rootx.replace('@','#')
     dictionary = {}
 
