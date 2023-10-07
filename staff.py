@@ -208,6 +208,28 @@ async def unbrazil(ctx,arg1: Member=None):
 			await arg1.remove_roles(takerole)
 			await ctx.send(arg1.mention+" has been let out of Bihar.")
 
+@bot.command(name='war', aliases=['War'])
+async def war(ctx,arg1: Member=None):
+	server=ctx.guild
+	if checkStaff(ctx.author):
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			giverole = server.get_role(1152441187572121742) # brazil
+			await arg1.add_roles(giverole)
+			await ctx.send(arg1.mention+" is sexually aroused by war!")
+
+@bot.command(name='peace', aliases=['Peace','unwar','Unwar'])
+async def peace(ctx,arg1: Member=None):
+	server=ctx.guild
+	if checkStaff(ctx.author):
+		if arg1 == None:
+			await ctx.send("No user given")
+		else:
+			takerole = server.get_role(1152441187572121742) # brazil
+			await arg1.remove_roles(takerole)
+			await ctx.send(arg1.mention+" has gotten over their war fetish!")
+
 @bot.command(name="checkxp")
 async def checkxp(ctx, num = None):
 	if num != None:
