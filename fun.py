@@ -409,5 +409,7 @@ def chat_with_chatgpt(prompt, model="text-davinci-003"):
 
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
-	if checkStaff(ctx.author):
+	roles = ctx.author.roles
+	airole = ctx.guild.get_role(1161240462766653461)
+	if airole in roles:
 		await ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
