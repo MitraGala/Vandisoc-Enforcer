@@ -413,3 +413,15 @@ async def ask(ctx, *, userimp):
 	airole = ctx.guild.get_role(1161240462766653461)
 	if airole in roles:
 		await ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
+
+
+@bot.command(name='image')
+async def image(ctx, *, userinput):
+        if checkStaff(ctx.author):
+                response = openai.Image.create(
+                        prompt=userinput,
+                        n=1,
+                        size="512x512"
+                )
+                image_url = response['data'][0]['url']
+                await ctx.reply(image_url)
