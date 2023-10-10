@@ -410,4 +410,4 @@ def chat_with_chatgpt(prompt, model="text-davinci-003"):
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author):
-		ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
+		await ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
