@@ -394,7 +394,7 @@ async def cah(ctx, *, txtinput):
 
 import openai
 openai.api_key = open('openaicode.txt','r').read()
-def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
+def chat_with_chatgpt(prompt, model="text-davinci-003"):
     response = openai.Completion.create(
         engine=model,
         prompt=prompt,
@@ -410,4 +410,4 @@ def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author):
-		ctx.send(chat_with_chatgpt(userimp).replace('@','#'))
+		ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
