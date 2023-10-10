@@ -391,3 +391,23 @@ cahquestions = ["Holy shit I hate EMU.","What is the most esoteric thing ever? E
 async def cah(ctx, *, txtinput):
 	blahablah = txtinput.replace('@', '#')
 	await ctx.send(random.choice(cahquestions).replace('EMU',blahablah))
+
+import openai
+openai.api_key = open('openaicode.txt','r').read()
+def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
+    response = openai.Completion.create(
+        engine=model,
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    message = response.choices[0].text.strip()
+    return message
+
+@bot.command(name='ask')
+async def ask(ctx, *, userimp):
+	if checkStaff(ctx.author):
+		ctx.send(chat_with_chatgpt(userimp).replace('@','#'))
