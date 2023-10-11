@@ -399,17 +399,17 @@ def chat_with_chatgpt(prompt, model, staffstatus):
                 tokenNum = 500
         else:
                 tokenNum = 100
-    response = openai.Completion.create(
+        response = openai.Completion.create(
         engine=model,
         prompt=prompt,
         max_tokens=tokenNum,
         n=1,
         stop=None,
         temperature=0.5,
-    )
+        )
 
-    message = response.choices[0].text.strip()
-    return message
+        message = response.choices[0].text.strip()
+        return message
 
 botChans = [998457100105687040, 996033099236393020, 1129429152110485637]
 
