@@ -32,12 +32,12 @@ async def on_ready():
 def checkAdmin(member):
         guild = bot.get_guild(995971208938004560)
         admin = guild.get_role(995971209294520370)
-        return admin in member.roles
+        return admin in guild.get_member(member.id).roles
 
 def checkStaff(member):
         guild = bot.get_guild(995971208938004560)
         moderator = guild.get_role(1084538138547998810)
-        return (moderator in member.roles) or checkAdmin(member)
+        return (moderator in guild.get_member(member.id).roles) or checkAdmin(member)
 
 @tasks.loop(seconds=10)
 async def punishment():
