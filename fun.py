@@ -409,15 +409,18 @@ def chat_with_chatgpt(prompt, model="text-davinci-003"):
 
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
-	roles = ctx.author.roles
-	airole = ctx.guild.get_role(1161240462766653461)
-	if airole in roles:
-		await ctx.reply(chat_with_chatgpt(userimp).replace('@','#'))
+	if checkStaff(ctx.author) or ctx.channel.id in botChans:
+		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
+
+@bot.command(name='davinci')
+async def davinci(ctx, *, userimp):
+	if checkStaff(ctx.author):
+		await ctx.reply(chat_with_chatgpt(userimp, "text-davinci-003").replace('@','#')[:2000])
 
 
 @bot.command(name='image')
 async def image(ctx, *, userinput):
-        if checkStaff(ctx.author):
+        if checkAdmin(ctx.author):
                 response = openai.Image.create(
                         prompt=userinput,
                         n=1,
