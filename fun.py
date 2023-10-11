@@ -432,7 +432,7 @@ async def asklong(ctx, *, prompt):
                 )
 
                 message = response.choices[0].text.strip()
-                print(message)
+                open('aioutput.txt','w').write(message)
 
 @bot.command(name='image')
 async def image(ctx, *, userinput):
