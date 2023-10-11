@@ -394,11 +394,11 @@ async def cah(ctx, *, txtinput):
 
 import openai
 openai.api_key = open('openaicode.txt','r').read()
-def chat_with_chatgpt(prompt, model="text-davinci-003"):
+def chat_with_chatgpt(prompt, model):
     response = openai.Completion.create(
         engine=model,
         prompt=prompt,
-        max_tokens=100,
+        max_tokens=500,
         n=1,
         stop=None,
         temperature=0.5,
