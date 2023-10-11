@@ -407,6 +407,8 @@ def chat_with_chatgpt(prompt, model="text-davinci-003"):
     message = response.choices[0].text.strip()
     return message
 
+botChans = [998457100105687040, 996033099236393020, 1129429152110485637]
+
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans:
