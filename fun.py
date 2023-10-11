@@ -394,15 +394,11 @@ async def cah(ctx, *, txtinput):
 
 import openai
 openai.api_key = open('openaicode.txt','r').read()
-def chat_with_chatgpt(prompt, model, staffstatus):
-        if staffstatus:
-                tokenNum = 500
-        else:
-                tokenNum = 100
+def chat_with_chatgpt(prompt, model):
         response = openai.Completion.create(
         engine=model,
         prompt=prompt,
-        max_tokens=tokenNum,
+        max_tokens=500,
         n=1,
         stop=None,
         temperature=0.5,
@@ -416,13 +412,27 @@ botChans = [998457100105687040, 996033099236393020, 1129429152110485637]
 @bot.command(name='ask')
 async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans:
-		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct", checkStaff(ctx.author)).replace('@','#')[:2000])
+		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
 @bot.command(name='davinci')
 async def davinci(ctx, *, userimp):
 	if checkStaff(ctx.author):
-		await ctx.reply(chat_with_chatgpt(userimp, "text-davinci-003", True).replace('@','#')[:2000])
+		await ctx.reply(chat_with_chatgpt(userimp, "text-davinci-003").replace('@','#')[:2000])
 
+@bot.command(name='asklong')
+async def asklong(ctx, *, prompt):
+        if checkAdmin(ctx.author):
+                response = openai.Completion.create(
+                engine="gpt-3.5-turbo-instruct",
+                prompt=prompt,
+                max_tokens=4000,
+                n=1,
+                stop=None,
+                temperature=0.5,
+                )
+
+                message = response.choices[0].text.strip()
+                print(message)
 
 @bot.command(name='image')
 async def image(ctx, *, userinput):
