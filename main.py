@@ -32,7 +32,9 @@ async def on_ready():
 def checkAdmin(member):
         guild = bot.get_guild(995971208938004560)
         admin = guild.get_role(995971209294520370)
-        return admin in guild.get_member(member.id).roles
+	altmin = guild.get_role(995971209294520373)
+	roles = guild.get_member(member.id).roles
+        return (admin in roles) or (altmin in roles)
 
 def checkStaff(member):
         guild = bot.get_guild(995971208938004560)
