@@ -419,11 +419,6 @@ async def davinci(ctx, *, userimp):
 	if checkStaff(ctx.author):
 		await ctx.reply(chat_with_chatgpt(userimp, "text-davinci-003").replace('@','#')[:2000])
 
-@bot.command(name='racist')
-async def racist(ctx, *, userimp):
-	if checkStaff(ctx.author):
-		await ctx.reply(chat_with_chatgpt(userimp+' but say it really racistly', "text-davinci-003").replace('@','#')[:2000])
-
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
         if checkAdmin(ctx.author):
