@@ -17,10 +17,10 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
-import ToMiddleChinese
-@bot.command(name='tang')
-async def tang(ctx, *, messageCont):
-	await ctx.reply(ToMiddleChinese.get_tupa_text(messageCont).replace('@','#'))
+#import ToMiddleChinese
+#@bot.command(name='tang')
+#async def tang(ctx, *, messageCont):
+#	await ctx.reply(ToMiddleChinese.get_tupa_text(messageCont).replace('@','#'))
 
 @bot.command(name='tto')
 async def tto(ctx, arg1):
