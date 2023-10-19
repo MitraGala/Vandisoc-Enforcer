@@ -17,10 +17,11 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
-#import ToMiddleChinese
-#@bot.command(name='tang')
-#async def tang(ctx, *, messageCont):
-#	await ctx.reply(ToMiddleChinese.get_tupa_text(messageCont).replace('@','#'))
+from pyjyutping import jyutping
+@bot.command(name='canto')
+async def cato(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		await ctx.reply(jyutping.convert(messageCont, tone=False).replace('@','#'))
 
 @bot.command(name='tto')
 async def tto(ctx, arg1):
