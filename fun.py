@@ -17,6 +17,10 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
+@bot.command(name='pronouns')
+async def pronouns(ctx):
+	await ctx.reply('I identify as female and my pronouns are She/Her. Thanks for asking! :)')
+
 from pyjyutping import jyutping
 @bot.command(name='canto')
 async def cato(ctx, *, messageCont):
