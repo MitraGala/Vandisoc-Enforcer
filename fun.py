@@ -328,7 +328,7 @@ async def flip(ctx):
 	results = ['Heads', 'Tails']
 	await ctx.send(results[random.randint(0,1)])
 	
-@bot.command(name='count')
+'''@bot.command(name='count')
 async def count(ctx, poll):
 	graph = []
 	export = '**Poll Results:**\n'
@@ -345,7 +345,7 @@ async def count(ctx, poll):
 		count = count + i[1]
 	for i in graph:
 		export = export + i[0] + ' ' + str(round(i[1]/count*100,1)) + '%\n'
-	await ctx.send(export)
+	await ctx.send(export)'''
 	
 @bot.command(name='ship')
 async def ship(ctx, arg1, arg2):
