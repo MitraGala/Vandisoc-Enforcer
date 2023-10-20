@@ -116,6 +116,30 @@ async def mr(ctx):
                 img.save('phenotypes/aacreated/'+ID+'.png')
                 await ctx.reply("**New Race:**\n"+racename[1:],file=discord.File('phenotypes/aacreated/'+ID+'.png'))
 
+@bot.command(name='airace')
+async def airace(ctx):
+        if checkStaff(ctx.author):
+                ID = str(random.randint(0, 1000000))
+                arguments = ctx.message.content.split(' ')[1:]
+                phenotypes = os.listdir("phenotypes/")[1:]
+                iterate = 1
+                img = Image.open("phenotypes/"+phenotypes[0]).convert("RGBA")
+                racename = ''
+                for i in arguments:
+                        img2 = Image.open("phenotypes/"+phenotypes[int(i)-1]).convert("RGBA")
+                        img = Image.blend(img,img2, 1/iterate)
+                        racename = racename + ' ' + phenotypes[int(i)-1][:-4]
+                        iterate += 1
+                img.save('phenotypes/aacreated/'+ID+'.png')
+                response = openai.Image.create_variation(
+                        image=Image.open(requests.get('phenotypes/aacreated/'+ID+'.png', stream=True)).tobytes(),
+                        n=1,
+                        size="512x512"
+                )
+                image_url = response['data'][0]['url']
+                await ctx.reply("**New Race:**\n"+racename[1:])
+		await ctx.send(image_url)
+
 @bot.command(name='racehelp')
 async def racehelp(ctx):
         await ctx.reply(file=discord.File('phenotypes/aacreated/racehelp.png'))
