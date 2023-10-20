@@ -132,9 +132,9 @@ async def airace(ctx):
 			iterate += 1
 		img.save('phenotypes/aacreated/'+ID+'.png')
 		response = openai.Image.create_variation(
-			image=open("corgi_and_cat_paw.png", "rb"),
+			image=open('phenotypes/aacreated/'+ID+'.png', "rb"),
 			n=1,
-			size="1024x1024"
+			size="512x512"
 		)
 		image_url = response['data'][0]['url']
 		await ctx.reply("**New Race:**\n"+racename[1:])
