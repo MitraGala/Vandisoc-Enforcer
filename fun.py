@@ -23,9 +23,20 @@ async def pronouns(ctx):
 
 from pyjyutping import jyutping
 @bot.command(name='canto')
-async def cato(ctx, *, messageCont):
+async def canto(ctx, *, messageCont):
 	if checkStaff(ctx.author):
 		await ctx.reply(jyutping.convert(messageCont, tone=False).replace('@','#'))
+
+import sinopy
+@bot.command(name='pinyin')
+async def pinyin(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		await ctx.reply(sinopy.pinyin(messageCont, variant='mandarin'))
+
+@bot.command(name='tang')
+async def tang(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		await ctx.reply(' '.join(sinopy.chars2baxter(messageCont)))
 
 @bot.command(name='tto')
 async def tto(ctx, arg1):
