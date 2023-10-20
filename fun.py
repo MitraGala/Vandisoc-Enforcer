@@ -25,7 +25,7 @@ from pyjyutping import jyutping
 @bot.command(name='canto')
 async def canto(ctx, *, messageCont):
 	if checkStaff(ctx.author):
-		await ctx.reply(jyutping.convert(messageCont, tone=False).replace('@','#'))
+		await ctx.reply(jyutping.convert(messageCont, tone=True).replace('@','#'))
 
 import sinopy
 @bot.command(name='pinyin')
