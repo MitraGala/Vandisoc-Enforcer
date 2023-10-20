@@ -43,6 +43,19 @@ async def guoyu(ctx, *, messageCont):
 	if checkStaff(ctx.author):
 		await ctx.reply('\n'.join(sinopy.chars2gloss(messageCont)))
 
+from taibun import Converter
+@bot.command(name='quan')
+async def quan(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		c = Converter(dialect='north')
+		await ctx.reply(c.get(messageCont).replace('@','#'))
+
+@bot.command(name='zhang')
+async def zhang(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		c = Converter(dialect='south')
+		await ctx.reply(c.get(messageCont).replace('@','#'))
+
 @bot.command(name='tto')
 async def tto(ctx, arg1):
 	textt = ctx.message.content[6+len(arg1):]
