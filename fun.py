@@ -24,37 +24,31 @@ async def pronouns(ctx):
 from pyjyutping import jyutping
 @bot.command(name='canto')
 async def canto(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		await ctx.reply(jyutping.convert(messageCont, tone=True).replace('@','#'))
+	await ctx.reply(jyutping.convert(messageCont, tone=True).replace('@','#'))
 
 import sinopy
 @bot.command(name='pinyin')
 async def pinyin(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		await ctx.reply(sinopy.pinyin(messageCont, variant='mandarin'))
+	await ctx.reply(sinopy.pinyin(messageCont, variant='mandarin'))
 
 @bot.command(name='tang')
 async def tang(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		await ctx.reply(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
+	await ctx.reply(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
 
 @bot.command(name='guoyu')
 async def guoyu(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		await ctx.reply('\n'.join(sinopy.chars2gloss(messageCont)))
+	await ctx.reply('\n'.join(sinopy.chars2gloss(messageCont)))
 
 from taibun import Converter
 @bot.command(name='quan')
 async def quan(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		c = Converter(dialect='north')
-		await ctx.reply(c.get(messageCont).replace('@','#'))
+	c = Converter(dialect='north')
+	await ctx.reply(c.get(messageCont).replace('@','#'))
 
 @bot.command(name='zhang')
 async def zhang(ctx, *, messageCont):
-	if checkStaff(ctx.author):
-		c = Converter(dialect='south')
-		await ctx.reply(c.get(messageCont).replace('@','#'))
+	c = Converter(dialect='south')
+	await ctx.reply(c.get(messageCont).replace('@','#'))
 
 @bot.command(name='tto')
 async def tto(ctx, arg1):
