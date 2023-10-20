@@ -36,7 +36,12 @@ async def pinyin(ctx, *, messageCont):
 @bot.command(name='tang')
 async def tang(ctx, *, messageCont):
 	if checkStaff(ctx.author):
-		await ctx.reply(' '.join(sinopy.chars2baxter(messageCont)))
+		await ctx.reply(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
+
+@bot.command(name='guoyu')
+async def guoyu(ctx, *, messageCont):
+	if checkStaff(ctx.author):
+		await ctx.reply('\n'.join(sinopy.chars2gloss(messageCont)))
 
 @bot.command(name='tto')
 async def tto(ctx, arg1):
