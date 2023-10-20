@@ -50,6 +50,16 @@ async def zhang(ctx, *, messageCont):
 	c = Converter(dialect='south')
 	await ctx.reply(c.get(messageCont).replace('@','#'))
 
+import pykakasi
+@bot.command(name='jp')
+async def jp(ctx, *, messageCont):
+	kks = pykakasi.kakasi()
+	result = kks.convert(messageCont)
+	finalTxt = []
+	for i in result:
+		finalTxt.append(i['hepburn'])
+	await ctx.reply(' '.join(finalTxt).replace('@','#'))
+
 @bot.command(name='tto')
 async def tto(ctx, arg1):
 	textt = ctx.message.content[6+len(arg1):]
