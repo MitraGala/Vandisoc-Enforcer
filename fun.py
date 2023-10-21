@@ -24,7 +24,7 @@ async def pronouns(ctx):
 from pyjyutping import jyutping
 @bot.command(name='canto')
 async def canto(ctx, *, messageCont):
-	await ctx.reply(jyutping.convert(messageCont, tone=True).replace('@','#'))
+	await ctx.reply(jyutping.convert(messageCont, tone_numbers=False).replace('@','#'))
 
 import sinopy
 @bot.command(name='pinyin')
