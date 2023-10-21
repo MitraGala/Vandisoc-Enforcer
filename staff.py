@@ -71,6 +71,12 @@ async def tempmute(ctx, user: discord.Member, addTime):
                 await mute(ctx, user)
                 addPunish(user.id, True, decodeTime(addTime))
 
+@bot.command(name='say')
+async def say(ctx, *, messageCont):
+        general = bot.get_guild(995971208938004560).get_channel(998442467533783082)
+        if checkAdmin(ctx.author):
+                await ctx.send(messageCont)
+
 @bot.command(name='tempban')
 async def tempban(ctx, user: discord.Member, addTime, *, reason=None):
         infractions = bot.get_guild(995971208938004560).get_channel(995971210938683422)
