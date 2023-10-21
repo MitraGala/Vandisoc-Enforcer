@@ -75,7 +75,7 @@ async def tempmute(ctx, user: discord.Member, addTime):
 async def say(ctx, *, messageCont):
         general = bot.get_guild(995971208938004560).get_channel(998442467533783082)
         if checkAdmin(ctx.author):
-                await ctx.send(messageCont)
+                await general.send(messageCont)
 
 @bot.command(name='tempban')
 async def tempban(ctx, user: discord.Member, addTime, *, reason=None):
