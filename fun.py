@@ -17,6 +17,10 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
+@bot.command(name='israel')
+async def israel(ctx):
+	await ctx.reply("https://tenor.com/view/love-israel-flag-gif-10806218")
+
 @bot.command(name='pronouns')
 async def pronouns(ctx):
 	await ctx.reply('I identify as female and my pronouns are She/Her. Thanks for asking! :)')
