@@ -463,7 +463,7 @@ async def craig(ctx, *, userimp):
 		if ctx.author.id == 468491395938910228:
 			await ctx.reply(chat_with_chatgpt(context+' I am your wife May. ' + userimp+"?", "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 		else:
-			await ctx.reply(chat_with_chatgpt(context+' I am not May. '+ userimp+"?", "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
+			await ctx.reply(chat_with_chatgpt(context+' You are talking to a stranger right now. \n\n'+ userimp+"?", "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
 @bot.command(name='davinci')
 async def davinci(ctx, *, userimp):
