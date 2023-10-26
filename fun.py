@@ -460,7 +460,7 @@ botChans = [998457100105687040, 996033099236393020, 1129429152110485637]
 async def ask(ctx, *, userimp):
 	context = open('craigCtx.txt','r',encoding='UTF-8').read()+"\n\n"
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
-		await ctx.reply(chat_with_chatgpt(context+userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
+		await ctx.reply(chat_with_chatgpt(context+userimp+"?", "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
 @bot.command(name='davinci')
 async def davinci(ctx, *, userimp):
