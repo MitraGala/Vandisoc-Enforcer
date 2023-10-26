@@ -467,6 +467,11 @@ async def davinci(ctx, *, userimp):
 	if checkStaff(ctx.author):
 		await ctx.reply(chat_with_chatgpt(userimp, "text-davinci-003").replace('@','#')[:2000])
 
+@bot.command(name='ask2')
+async def ask2(ctx, *, userimp):
+	if checkStaff(ctx.author):
+		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
+
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
         if checkAdmin(ctx.author):
