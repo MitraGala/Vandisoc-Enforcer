@@ -17,9 +17,9 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
-@bot.command(name='israel')
-async def israel(ctx):
-	await ctx.reply("https://tenor.com/view/love-israel-flag-gif-10806218")
+@bot.command(name='rule4')
+async def rule4(ctx):
+	await ctx.reply("https://tenor.com/view/pinkemon-gif-1237034023248374932")
 
 @bot.command(name='pronouns')
 async def pronouns(ctx):
