@@ -473,12 +473,15 @@ async def ask(ctx, *, userimp):
 		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
 @bot.command(name='china')
-async def china(ctx, *, userimp):
+async def china(ctx, *, messageCont):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
-		await pinyin(ctx, userimp)
-		await canto(ctx, userimp)
-		await quan(ctx, userimp)
-		await tang(ctx, userimp)
+		chinese = []
+		chinese.append(sinopy.pinyin(messageCont, variant='mandarin'))
+		chinese.append(jyutping.convert(messageCont, tone=False).replace('@','#'))
+		c = Converter(dialect='north')
+		chinese.append(c.get(messageCont).replace('@','#'))
+		chinese.append(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
+		await ctx.reply('\n'.join(chinese))
 						  
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
