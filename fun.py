@@ -472,6 +472,14 @@ async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
 		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
+@bot.command(name='china')
+async def china(ctx, *, userimp):
+	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
+		await pinyin(ctx, userimp)
+		await canto(ctx, userimp)
+		await quan(ctx, userimp)
+		await tang(ctx, userimp)
+						  
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
         if checkAdmin(ctx.author):
