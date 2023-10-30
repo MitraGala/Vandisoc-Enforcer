@@ -483,7 +483,7 @@ async def china(ctx, *, userImp):
 		c = Converter(dialect='north')
 		chinese.append(c.get(messageCont))
 		chinese.append(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
-		await ctx.reply('\n'.join(chinese).replace('@','#')
+		await ctx.reply('\n'.join(chinese).replace('@','#'))
 						  
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
