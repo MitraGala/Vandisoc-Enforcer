@@ -476,8 +476,8 @@ async def ask(ctx, *, userimp):
 async def china(ctx, *, userImp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
 		chinese = []
-		messageCont = translator.translate(userImp, dest='zh-tw')
-		chinese.append(translator.translate(messageCont))
+		messageCont = translator.translate(userImp, dest='zh-tw').text
+		chinese.append(translator.translate(messageCont).text)
 		chinese.append(sinopy.pinyin(messageCont, variant='mandarin'))
 		chinese.append(jyutping.convert(messageCont, tone=False))
 		c = Converter(dialect='north')
