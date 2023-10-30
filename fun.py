@@ -481,7 +481,7 @@ async def china(ctx, *, userImp):
 		chinese.append(sinopy.pinyin(messageCont, variant='mandarin'))
 		chinese.append(jyutping.convert(messageCont, tone=False))
 		c = Converter(dialect='north')
-		chinese.append(c.get(messageCont)
+		chinese.append(c.get(messageCont))
 		chinese.append(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
 		await ctx.reply('\n'.join(chinese).replace('@','#')
 						  
