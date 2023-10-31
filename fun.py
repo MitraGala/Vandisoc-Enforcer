@@ -21,6 +21,18 @@ async def eng(ctx):
 async def rule4(ctx):
 	await ctx.reply("https://tenor.com/view/pinkemon-gif-1237034023248374932")
 
+@bot.command(name='gender')
+async def gender(ctx):
+	server = ctx.guild
+	genderroles = 0
+	genders = [1168763856022147092, 1168764245043859587, 1168764499982028881]
+	for i in genders:
+		if i in ctx.author.roles:
+			genderroles += 1
+	if genderroles == 0:
+		giverole = server.get_role(random.choice(genders))
+		await ctx.author.add_roles(giverole)
+
 @bot.command(name='pronouns')
 async def pronouns(ctx):
 	await ctx.reply('I identify as female and my pronouns are She/Her. Thanks for asking! :)')
