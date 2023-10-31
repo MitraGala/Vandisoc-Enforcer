@@ -25,7 +25,7 @@ async def rule4(ctx):
 async def gender(ctx):
 	server = ctx.guild
 	genderroles = 0
-	genders = [1168763856022147092, 1168764245043859587, 1168764499982028881]
+	genders = [1168763856022147092, 1168764245043859587]
 	for i in ctx.author.roles:
 		if i.id in genders:
 			genderroles +=1
