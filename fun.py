@@ -21,7 +21,7 @@ async def eng(ctx):
 async def rule4(ctx):
 	await ctx.reply("https://tenor.com/view/pinkemon-gif-1237034023248374932")
 
-@bot.command(name='gender')
+genderrole = """@bot.command(name='gender')
 async def gender(ctx, arg1: Member=None):
 	server = ctx.guild
 	genderroles = 0
@@ -39,7 +39,7 @@ async def gender(ctx, arg1: Member=None):
 				genderroles +=1
 		if genderroles == 0:
 			giverole = server.get_role(random.choice(genders))
-			await ctx.author.add_roles(giverole)
+			await ctx.author.add_roles(giverole)"""
 
 @bot.command(name='pronouns')
 async def pronouns(ctx):
