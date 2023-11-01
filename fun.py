@@ -21,6 +21,10 @@ async def eng(ctx):
 async def rule4(ctx):
 	await ctx.reply("https://tenor.com/view/pinkemon-gif-1237034023248374932")
 
+@bot.command(name='ancientpsychictandemwarelephant')
+async def ancientpsychictandemwarelephant(ctx):
+	await ctx.reply("https://media.tenor.com/abLu_2Dr0BoAAAAC/adventure-time-ancient.gif")
+
 genderrole = """@bot.command(name='gender')
 async def gender(ctx, arg1: Member=None):
 	server = ctx.guild
