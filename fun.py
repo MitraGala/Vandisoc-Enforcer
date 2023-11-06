@@ -17,6 +17,14 @@ async def eng(ctx):
 	textt = ctx.message.content[5:]
 	await ctx.reply(translator.translate(textt).text.replace('@','#'))
 
+@bot.command(name='diagnose')
+async def fiagnose(ctx, arg1: Member=None):
+	if checkStaff(ctx.author):
+		if arg1 != None:
+			await ctx.reply(arg1.ping + ' is officially autistic.')
+		else:
+			await ctx.reply(ctx.author.ping + ' is officially autistic.')
+
 @bot.command(name='rule4')
 async def rule4(ctx):
 	await ctx.reply("https://tenor.com/view/pinkemon-gif-1237034023248374932")
