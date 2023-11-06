@@ -512,7 +512,7 @@ async def china(ctx, *, userImp):
 		chinese.append('# '+messageCont)
 		chinese.append(translator.translate(messageCont).text+'\n')
 		chinese.append(sinopy.pinyin(messageCont, variant='mandarin'))
-		chinese.append(jyutping.convert(messageCont, tone=False))
+		chinese.append(jyutping.convert(messageCont, tone=True))
 		c = Converter(dialect='north')
 		chinese.append(c.get(messageCont))
 		chinese.append(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
