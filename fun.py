@@ -21,9 +21,9 @@ async def eng(ctx):
 async def fiagnose(ctx, arg1: Member=None):
 	if checkStaff(ctx.author):
 		if arg1 != None:
-			await ctx.reply(arg1.ping + ' is officially autistic.')
+			await ctx.send(arg1.mention + ' is officially autistic.')
 		else:
-			await ctx.reply(ctx.author.ping + ' is officially autistic.')
+			await ctx.send(ctx.author.mention + ' is officially autistic.')
 
 @bot.command(name='rule4')
 async def rule4(ctx):
