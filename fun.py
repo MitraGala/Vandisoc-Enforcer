@@ -519,8 +519,9 @@ async def china(ctx, *, userImp):
 		await ctx.reply('\n'.join(chinese).replace('@','#'))
 
 @bot.command(name='hanzi')
-async def hanzi(ctx, *, messageCont):
+async def hanzi(ctx, *, userImp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
+		messageCont = userImp.replace('\n','')
 		chinese = []
 		pin = sinopy.pinyin(messageCont, variant='mandarin').split(' ')
 		jyut = jyutping.convert(messageCont, tone=True).split(' ')
