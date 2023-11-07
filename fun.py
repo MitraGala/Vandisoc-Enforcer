@@ -504,7 +504,7 @@ async def ask(ctx, *, userimp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
 		await ctx.reply(chat_with_chatgpt(userimp, "gpt-3.5-turbo-instruct").replace('@','#')[:2000])
 
-@bot.command(name='china')
+@bot.command(name='china', aliases=['cina'])
 async def china(ctx, *, userImp):
 	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
 		chinese = []
