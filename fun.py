@@ -517,6 +517,20 @@ async def china(ctx, *, userImp):
 		chinese.append(c.get(messageCont))
 		chinese.append(sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))))
 		await ctx.reply('\n'.join(chinese).replace('@','#'))
+
+@bot.command(name='hanzi')
+async def hanzi(ctx, *, messageCont):
+	if checkStaff(ctx.author) or ctx.channel.id in botChans or ctx.author.id == 468491395938910228:
+		chinese = []
+		pinyin = sinopy.pinyin(messageCont, variant='mandarin').split(' ')
+		jyutping = jyutping.convert(messageCont, tone=True).split(' ')
+		c = Converter(dialect='north')
+		min = c.get(messageCont).split(' ')
+		tang = sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))).split(' ')
+		for i in range(0,len(messageCont)):
+			chinese.append(', '.join([pinyin[i],jyutping[i],min[i],[tang]]))
+		await ctx.reply('\n'.join(chinese).replace('@','#'))
+		
 						  
 @bot.command(name='asklong')
 async def asklong(ctx, *, prompt):
