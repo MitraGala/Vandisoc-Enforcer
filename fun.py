@@ -524,11 +524,10 @@ async def hanzi(ctx, *, messageCont):
 		chinese = []
 		pin = sinopy.pinyin(messageCont, variant='mandarin').split(' ')
 		jyut = jyutping.convert(messageCont, tone=True).split(' ')
-		c = Converter(dialect='north')
+		c = Converter(dialect='north',format='number',delimiter=' ',punctuation='none')
 		min = c.get(messageCont).split(' ')
-		tang = sinopy.baxter2ipa(' '.join(sinopy.chars2baxter(messageCont))).split(' ')
 		for i in range(0,len(messageCont)):
-			chinese.append(', '.join([pin[i],jyut[i],min[i],tang[i]]))
+			chinese.append(', '.join([messageCont[i],pin[i],jyut[i],min[i]]))
 		await ctx.reply('\n'.join(chinese).replace('@','#'))
 		
 						  
