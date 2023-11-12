@@ -10,6 +10,7 @@ from pyjyutping import jyutping
 import sinopy
 from taibun import Converter
 import pykakasi
+import openai
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
