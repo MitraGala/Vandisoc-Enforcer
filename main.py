@@ -12,6 +12,8 @@ from taibun import Converter
 import pykakasi
 import openai
 
+openai.api_key = open('openaicode.txt','r').read()
+
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
 
