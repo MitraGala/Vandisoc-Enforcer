@@ -13,6 +13,20 @@ import pykakasi
 import openai
 
 openai.api_key = open('openaicode.txt','r').read()
+def chat_with_chatgpt(prompt, model):
+        response = openai.Completion.create(
+        engine=model,
+        prompt=prompt,
+        max_tokens=500,
+        n=1,
+        stop=None,
+        temperature=0.5,
+        )
+
+        message = response.choices[0].text.strip()
+        return message
+
+botChans = [998457100105687040, 996033099236393020, 1129429152110485637]
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
