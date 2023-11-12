@@ -7,6 +7,7 @@ from discord.ext import commands
 from discord.ext import tasks
 from PIL import Image
 from pydictionary import PyDictionary
+from pyjyutping import jyutping
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
