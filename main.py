@@ -8,6 +8,9 @@ from discord.ext import tasks
 from PIL import Image
 from pydictionary import PyDictionary
 from pyjyutping import jyutping
+import sinopy
+from taibun import Converter
+import pykakasi
 
 TOKEN = open("key.txt", "r").read()
 intents = Intents.all()
